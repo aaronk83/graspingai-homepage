@@ -1,8 +1,9 @@
-#Certain things
-/.DS_Store
-/.env
+# macOS system files
+.DS_Store
+**/.DS_Store
 
+# Environment files
+.env
 
-#Node/Tailwind (if used)
-/node_modules/
-
+# Node/Tailwind (if used)
+node_modules/
