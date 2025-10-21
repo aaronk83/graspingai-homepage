@@ -1,80 +1,122 @@
-<!-- Your whole page (logo, value prop, contact form) -->
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>GraspingAI — Human–AI Systems, thoughtfully built.</title>
-  <meta name="description" content="We design, diagnose, and reimagine cognition and coordination in the age of intelligent tools." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css" />
+  <title>GraspingAI — Human–AI Systems Architecture & UX Strategy</title>
+  <meta name="description" content="Designing AI systems people can understand, trust, and use effectively." />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #111111;
+      --muted: #555555;
+      --accent: #1f6feb;
+      --border: #e5e7eb;
+      --section: #fafafa;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; color: var(--fg); background: var(--bg); line-height: 1.6; }
+    header { padding: 56px 20px; text-align: center; border-bottom: 1px solid var(--border); background: var(--section); }
+    header h1 { margin: 0 0 8px 0; font-size: 32px; }
+    header p { margin: 0; color: var(--muted); }
+    .cta { margin-top: 16px; display: inline-flex; gap: 12px; flex-wrap: wrap; }
+    .btn { padding: 12px 16px; border-radius: 8px; text-decoration: none; border: 1px solid var(--accent); }
+    .btn.primary { background: var(--accent); color: #fff; }
+    .btn.secondary { color: var(--accent); background: #fff; }
+    main { max-width: 980px; margin: 0 auto; padding: 32px 20px; }
+    section { padding: 28px 0; border-bottom: 1px solid var(--border); }
+    section h2 { margin-top: 0; }
+    ul { margin: 8px 0 0 18px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+    th, td { text-align: left; padding: 10px; border: 1px solid var(--border); vertical-align: top; }
+    tfoot td { font-size: 14px; color: var(--muted); }
+    footer { text-align: center; padding: 32px 20px; color: var(--muted); }
+    @media (max-width: 640px) {
+      header h1 { font-size: 24px; }
+    }
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="wrap">
-      <a class="brand" href="/" aria-label="GraspingAI home">
-        <img src="/assets/logo.png" alt="GraspingAI logo" class="logo" />
-        <span class="brand-text">GraspingAI</span>
-      </a>
+  <header>
+    <h1>GraspingAI — Human–AI Systems Architecture & UX Strategy</h1>
+    <p>Designing AI systems people can understand, trust, and use effectively.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://cal.com/akagan/custom">Book a Consultation →</a>
+      <a class="btn secondary" href="#services">Explore Services ↓</a>
     </div>
   </header>
 
-  <main class="wrap">
-    <section class="hero" aria-labelledby="mission">
-      <h1 id="mission">Human–AI Systems, thoughtfully built.</h1>
-      <p class="lede">
-        We help teams design, diagnose, and reimagine cognition and coordination in the age of intelligent tools.
-        Our work bridges deep human understanding with practical AI—so products are not only powerful, but usable and meaningful.
-      </p>
+  <main>
+    <section id="intro">
+      <h2>Intro / Value Proposition</h2>
+      <p>GraspingAI helps teams bridge the gap between <em>intelligent technology</em> and <em>human comprehension</em>. Founded by <strong>Aaron Kagan, PhD</strong> (ex-Google, Meta, Fordham), we advise companies building or adopting AI systems to ensure they’re not just powerful — but usable, ethical, and aligned with human decision-making.</p>
+      <p>Our approach combines <strong>UX research</strong>, <strong>cognitive systems design</strong>, and <strong>AI product strategy</strong>, grounded in work shaping products used by billions.</p>
     </section>
 
-    <section class="contact card" aria-labelledby="contact-heading">
-      <h2 id="contact-heading">Contact</h2>
+    <section id="services">
+      <h2>What We Do</h2>
+      <p>We design clarity and trust into complex AI systems.</p>
+      <h3>Core Services</h3>
+      <ul>
+        <li><strong>AI UX Audits & Explainability Frameworks</strong> — Identify usability and trust gaps with actionable patterns for transparency and confidence.</li>
+        <li><strong>Workflow & Human-in-the-Loop Mapping</strong> — Ensure automation complements human judgment and expertise.</li>
+        <li><strong>AI Product & Strategy Advising</strong> — Align your roadmap with technical realities, user cognition, and responsible AI standards.</li>
+      </ul>
+      <h3>Specialized Offerings</h3>
+      <ul>
+        <li>Anthropomorphization Guidelines</li>
+        <li>Confidence & Uncertainty Design Patterns</li>
+        <li>Ethical / Responsible AI Design Reviews</li>
+        <li>Decision Transparency Blueprints</li>
+        <li>UX Ops for AI Teams</li>
+      </ul>
+    </section>
 
-      <!-- Works without JS; JS enhances -->
-      <form id="contactForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" novalidate>
-        <div class="grid">
-          <label>
-            <span>Name</span>
-            <input type="text" name="name" required />
-          </label>
-          <label>
-            <span>Email</span>
-            <input type="email" name="email" required />
-          </label>
-        </div>
-        <label>
-          <span>Message</span>
-          <textarea name="message" rows="6" required></textarea>
-        </label>
+    <section id="who">
+      <h2>Who We Work With</h2>
+      <ul>
+        <li>Enterprise AI & SaaS organizations introducing intelligent automation at scale</li>
+        <li>Startups turning research breakthroughs into human-centered products</li>
+        <li>Cross-functional teams seeking alignment across Product, Engineering, Legal, and Policy</li>
+      </ul>
+    </section>
 
-        <!-- Honeypot for spam -->
-        <input type="text" name="company" class="hp" autocomplete="off" tabindex="-1" aria-hidden="true" />
+    <section id="engagement">
+      <h2>Engagement Models</h2>
+      <table>
+        <thead>
+          <tr><th>Tier</th><th>Description</th><th>Typical Range</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Quick Wins</td><td>UX Audits and Spot Tests</td><td>$3K–$5K</td></tr>
+          <tr><td>Strategic Foundations</td><td>Workflow Mapping + Trust Framework</td><td>$8K–$15K</td></tr>
+          <tr><td>Long-Term Strategy</td><td>AI Tech & Business Advising</td><td>$5K–$8K/mo or $15K–$25K/project</td></tr>
+          <tr><td>Specialized Add-Ons</td><td>e.g., Ethical AI Review, Design Sprint</td><td>$6K–$30K</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td colspan="3">*Custom pricing and package structures available upon request.</td></tr>
+        </tfoot>
+      </table>
+    </section>
 
-        <button type="submit">Send</button>
-        <p class="form-note">We’ll reply within 1–2 business days.</p>
+    <section id="why">
+      <h2>Why GraspingAI</h2>
+      <ul>
+        <li><strong>Deep Human Factors Expertise</strong> — grounded in philosophy of mind, cognition, and product research.</li>
+        <li><strong>Proven Product Impact</strong> — work that has shaped global UX and compliance programs.</li>
+        <li><strong>Actionable, Not Academic</strong> — strategy translated into concrete design and operational decisions.</li>
+      </ul>
+    </section>
 
-        <!-- JS-enhanced messages -->
-        <p class="form-success" hidden>Thanks! Your message was sent.</p>
-        <p class="form-error" hidden>Sorry—something went wrong. Please email <a href="mailto:info@graspingai.com">info@graspingai.com</a>.</p>
-      </form>
-
-      <noscript>
-        <p><em>Note:</em> With JavaScript disabled, you’ll be redirected to a confirmation page.</p>
-      </noscript>
+    <section id="contact">
+      <h2>Let’s Connect</h2>
+      <p>Want to understand how to make your AI product more trustworthy, usable, and effective?</p>
+      <p><a href="https://cal.com/akagan/custom">Book a call with Aaron →</a> · <a href="https://www.linkedin.com/in/aaronkagan/">LinkedIn</a></p>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="wrap">© <span id="year"></span> GraspingAI</div>
+  <footer>
+    © GraspingAI — Human–AI Systems Architecture & UX Strategy
   </footer>
-
-  <script src="/script.js" defer></script>
 </body>
 </html>
-
-
-
