@@ -1,0 +1,35 @@
+/* all styling (clean, responsive) */
+
+:root { --max: 760px; }
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color: #121212; line-height: 1.6; background: #fff; }
+.wrap { max-width: var(--max); margin: 0 auto; padding: 2rem 1.25rem; }
+
+.site-header { border-bottom: 1px solid #eee; backdrop-filter: saturate(180%) blur(8px); }
+.brand { display: inline-flex; align-items: center; gap: .6rem; text-decoration: none; color: inherit; }
+.logo { width: 44px; height: 44px; object-fit: contain; }
+.brand-text { font-weight: 800; letter-spacing: .2px; }
+
+.hero { padding: 2rem 0 1rem; }
+.hero h1 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); margin: 0 0 .4rem; }
+.lede { font-size: 1.075rem; opacity: .95; }
+
+.card { margin-top: 2rem; padding: 1.2rem; border: 1px solid #eee; border-radius: 16px; box-shadow: 0 6px 18px rgba(0,0,0,.05); }
+.grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+@media (min-width: 640px) { .grid { grid-template-columns: 1fr 1fr; } }
+
+label { display: grid; gap: .4rem; font-weight: 600; }
+input, textarea { width: 100%; padding: .85rem 1rem; border: 1px solid #ddd; border-radius: 12px; font: inherit; }
+input:focus, textarea:focus { outline: 3px solid rgba(0, 125, 250, .25); border-color: #bbb; }
+
+button { margin-top: .5rem; padding: .9rem 1.2rem; border: 0; border-radius: 12px; font-weight: 700; cursor: pointer; box-shadow: 0 6px 18px rgba(0,0,0,.08); }
+button:hover { transform: translateY(-1px); }
+
+.form-note { color: #666; font-size: .95rem; }
+.form-success { color: #156f3a; font-weight: 600; }
+.form-error { color: #a31818; font-weight: 600; }
+
+.hp { position: absolute !important; left: -9999px !important; }
+
+.site-footer { border-top: 1px solid #eee; margin-top: 2rem; }

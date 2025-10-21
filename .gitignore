@@ -1,0 +1,8 @@
+#Certain things
+/.DS_Store
+/.env
+
+
+#Node/Tailwind (if used)
+/node_modules/
+
