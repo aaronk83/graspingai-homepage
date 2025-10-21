@@ -5,74 +5,93 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>GraspingAI — Human–AI Systems Architecture & UX Strategy</title>
   <meta name="description" content="Designing AI systems people can understand, trust, and use effectively." />
-  <style>
-    :root {
-      --bg: #ffffff;
-      --fg: #111111;
-      --muted: #555555;
-      --accent: #1f6feb;
-      --border: #e5e7eb;
-      --section: #fafafa;
-    }
-    * { box-sizing: border-box; }
-    body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; color: var(--fg); background: var(--bg); line-height: 1.6; }
-    header { padding: 56px 20px; text-align: center; border-bottom: 1px solid var(--border); background: var(--section); }
-    header h1 { margin: 0 0 8px 0; font-size: 32px; }
-    header p { margin: 0; color: var(--muted); }
-    .cta { margin-top: 16px; display: inline-flex; gap: 12px; flex-wrap: wrap; }
-    .btn { padding: 12px 16px; border-radius: 8px; text-decoration: none; border: 1px solid var(--accent); }
-    .btn.primary { background: var(--accent); color: #fff; }
-    .btn.secondary { color: var(--accent); background: #fff; }
-    main { max-width: 980px; margin: 0 auto; padding: 32px 20px; }
-    section { padding: 28px 0; border-bottom: 1px solid var(--border); }
-    section h2 { margin-top: 0; }
-    ul { margin: 8px 0 0 18px; }
-    table { width: 100%; border-collapse: collapse; margin-top: 12px; }
-    th, td { text-align: left; padding: 10px; border: 1px solid var(--border); vertical-align: top; }
-    tfoot td { font-size: 14px; color: var(--muted); }
-    footer { text-align: center; padding: 32px 20px; color: var(--muted); }
-    @media (max-width: 640px) {
-      header h1 { font-size: 24px; }
-    }
-  </style>
+  <meta property="og:title" content="GraspingAI — Human–AI Systems Architecture & UX Strategy" />
+  <meta property="og:description" content="Designing AI systems people can understand, trust, and use effectively." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0b1220" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header>
-    <h1>GraspingAI — Human–AI Systems Architecture & UX Strategy</h1>
-    <p>Designing AI systems people can understand, trust, and use effectively.</p>
-    <div class="cta">
-      <a class="btn primary" href="https://cal.com/akagan/custom">Book a Consultation →</a>
-      <a class="btn secondary" href="#services">Explore Services ↓</a>
+  <!-- Sticky top nav -->
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top">
+        <picture>
+          <source srcset="assets/logo-nav.svg" type="image/svg+xml" />
+          <img src="assets/logo-nav.png" alt="GraspingAI" class="brand-logo" />
+        </picture>
+        <span class="brand-text">GraspingAI</span>
+      </a>
+      <nav class="menu" aria-label="Primary">
+        <a href="#services">Services</a>
+        <a href="#who">Who We Work With</a>
+        <a href="#engagement">Engagement</a>
+        <a href="#why">Why Us</a>
+        <a class="btn small" href="https://cal.com/akagan/custom">Book a Call</a>
+      </nav>
+      <button class="menu-toggle" aria-label="Open Menu" aria-controls="drawer" aria-expanded="false">☰</button>
+    </div>
+    <div id="drawer" class="drawer" hidden>
+      <a href="#services">Services</a>
+      <a href="#who">Who We Work With</a>
+      <a href="#engagement">Engagement</a>
+      <a href="#why">Why Us</a>
+      <a class="btn small" href="https://cal.com/akagan/custom">Book a Call</a>
     </div>
   </header>
 
-  <main>
-    <section id="intro">
+  <!-- Hero with big logo -->
+  <section id="top" class="hero">
+    <div class="container hero-inner">
+        <div class="hero-logo">
+      <picture>
+        <source srcset="assets/logo-hero.svg" type="image/svg+xml" />
+        <img src="assets/logo-hero.png" alt="GraspingAI logo" class="hero-logo-img" />
+      </picture>
+    </div>
+
+      <h1>Human–AI Systems Architecture & UX Strategy</h1>
+      <p class="subhead">Designing AI systems people can understand, trust, and use effectively.</p>
+      <div class="cta">
+        <a class="btn primary" href="https://cal.com/akagan/custom">Book a Consultation →</a>
+        <a class="btn secondary" href="#services">Explore Services ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <main class="container">
+    <section id="intro" class="section">
       <h2>Intro / Value Proposition</h2>
       <p>GraspingAI helps teams bridge the gap between <em>intelligent technology</em> and <em>human comprehension</em>. Founded by <strong>Aaron Kagan, PhD</strong> (ex-Google, Meta, Fordham), we advise companies building or adopting AI systems to ensure they’re not just powerful — but usable, ethical, and aligned with human decision-making.</p>
       <p>Our approach combines <strong>UX research</strong>, <strong>cognitive systems design</strong>, and <strong>AI product strategy</strong>, grounded in work shaping products used by billions.</p>
     </section>
 
-    <section id="services">
+    <section id="services" class="section">
       <h2>What We Do</h2>
       <p>We design clarity and trust into complex AI systems.</p>
-      <h3>Core Services</h3>
-      <ul>
-        <li><strong>AI UX Audits & Explainability Frameworks</strong> — Identify usability and trust gaps with actionable patterns for transparency and confidence.</li>
-        <li><strong>Workflow & Human-in-the-Loop Mapping</strong> — Ensure automation complements human judgment and expertise.</li>
-        <li><strong>AI Product & Strategy Advising</strong> — Align your roadmap with technical realities, user cognition, and responsible AI standards.</li>
-      </ul>
-      <h3>Specialized Offerings</h3>
-      <ul>
-        <li>Anthropomorphization Guidelines</li>
-        <li>Confidence & Uncertainty Design Patterns</li>
-        <li>Ethical / Responsible AI Design Reviews</li>
-        <li>Decision Transparency Blueprints</li>
-        <li>UX Ops for AI Teams</li>
-      </ul>
+      <div class="grid two">
+        <div>
+          <h3>Core Services</h3>
+          <ul>
+            <li><strong>AI UX Audits & Explainability Frameworks</strong> — Identify usability and trust gaps with actionable patterns for transparency and confidence.</li>
+            <li><strong>Workflow & Human-in-the-Loop Mapping</strong> — Ensure automation complements human judgment and expertise.</li>
+            <li><strong>AI Product & Strategy Advising</strong> — Align your roadmap with technical realities, user cognition, and responsible AI standards.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Specialized Offerings</h3>
+          <ul>
+            <li>Anthropomorphization Guidelines</li>
+            <li>Confidence & Uncertainty Design Patterns</li>
+            <li>Ethical / Responsible AI Design Reviews</li>
+            <li>Decision Transparency Blueprints</li>
+            <li>UX Ops for AI Teams</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
-    <section id="who">
+    <section id="who" class="section">
       <h2>Who We Work With</h2>
       <ul>
         <li>Enterprise AI & SaaS organizations introducing intelligent automation at scale</li>
@@ -81,25 +100,25 @@
       </ul>
     </section>
 
-    <section id="engagement">
+    <section id="engagement" class="section">
       <h2>Engagement Models</h2>
-      <table>
-        <thead>
-          <tr><th>Tier</th><th>Description</th><th>Typical Range</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Quick Wins</td><td>UX Audits and Spot Tests</td><td>$3K–$5K</td></tr>
-          <tr><td>Strategic Foundations</td><td>Workflow Mapping + Trust Framework</td><td>$8K–$15K</td></tr>
-          <tr><td>Long-Term Strategy</td><td>AI Tech & Business Advising</td><td>$5K–$8K/mo or $15K–$25K/project</td></tr>
-          <tr><td>Specialized Add-Ons</td><td>e.g., Ethical AI Review, Design Sprint</td><td>$6K–$30K</td></tr>
-        </tbody>
-        <tfoot>
-          <tr><td colspan="3">*Custom pricing and package structures available upon request.</td></tr>
-        </tfoot>
-      </table>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Tier</th><th>Description</th><th>Typical Range</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Quick Wins</td><td>UX Audits and Spot Tests</td><td>$3K–$5K</td></tr>
+            <tr><td>Strategic Foundations</td><td>Workflow Mapping + Trust Framework</td><td>$8K–$15K</td></tr>
+            <tr><td>Long-Term Strategy</td><td>AI Tech & Business Advising</td><td>$5K–$8K/mo or $15K–$25K/project</td></tr>
+            <tr><td>Specialized Add-Ons</td><td>e.g., Ethical AI Review, Design Sprint</td><td>$6K–$30K</td></tr>
+          </tbody>
+        </table>
+        <p class="muted">*Custom pricing and package structures available upon request.</p>
+      </div>
     </section>
 
-    <section id="why">
+    <section id="why" class="section">
       <h2>Why GraspingAI</h2>
       <ul>
         <li><strong>Deep Human Factors Expertise</strong> — grounded in philosophy of mind, cognition, and product research.</li>
@@ -108,15 +127,28 @@
       </ul>
     </section>
 
-    <section id="contact">
+    <section id="contact" class="section">
       <h2>Let’s Connect</h2>
       <p>Want to understand how to make your AI product more trustworthy, usable, and effective?</p>
-      <p><a href="https://cal.com/akagan/custom">Book a call with Aaron →</a> · <a href="https://www.linkedin.com/in/aaronkagan/">LinkedIn</a></p>
+      <p><a class="btn primary" href="https://cal.com/akagan/custom">Book a call with Aaron →</a> <a class="btn secondary" href="https://www.linkedin.com/in/aaronkagan/">LinkedIn</a></p>
     </section>
   </main>
 
-  <footer>
-    © GraspingAI — Human–AI Systems Architecture & UX Strategy
+  <footer class="site-footer">
+    <div class="container">
+      © GraspingAI — Human–AI Systems Architecture & UX Strategy
+    </div>
   </footer>
+
+ <script>
+  const toggle = document.querySelector('.menu-toggle');
+  const drawer = document.getElementById('drawer');
+  toggle.addEventListener('click', () => {
+    drawer.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', drawer.classList.contains('open'));
+  });
+</script>
+
+
 </body>
 </html>
