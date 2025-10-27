@@ -340,13 +340,33 @@ thead th {
 }
 tfoot td { color: var(--muted); }
 
+/* Header divider fallback + enhancement */
+thead th { 
+  border-bottom: 1px solid var(--border); /* fallback */
+}
+
+/* If the browser supports color-mix, gently brighten the header divider */
+@supports (color: color-mix(in srgb, #000 50%, #fff 50%)) {
+  thead th {
+    border-bottom-color: color-mix(in srgb, var(--border) 65%, #fff 35%);
+  }
+}
+
+/* Make sure the Engagement table uses the refined look */
+#engagement table { border-collapse: collapse; }
+#engagement th,
+#engagement td {
+  border: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+
 
 /* ---------- Footer ---------- */
 .site-footer{
   padding:28px 0;color:var(--muted);text-align:center;
   border-top:1px solid var(--border);background:var(--panel)
 }
-
 
 
 /* ---------- Responsive ---------- */
