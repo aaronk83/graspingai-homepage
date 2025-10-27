@@ -20,6 +20,71 @@ body {
   line-height: 1.6;
 }
 
+/* ────────────────────────────────────────────────
+   GLOBAL TYPE SYSTEM — mobile-first, accessible
+   ──────────────────────────────────────────────── */
+:root {
+  /* keep your palette; add fluid type + measures */
+  --step--1: clamp(0.875rem, 0.83rem + 0.2vw, 0.95rem);
+  --step-0:  clamp(1rem, 0.97rem + 0.3vw, 1.1rem);
+  --step-1:  clamp(1.125rem, 1.06rem + 0.6vw, 1.35rem);
+  --step-2:  clamp(1.375rem, 1.22rem + 1.2vw, 1.75rem);
+  --step-3:  clamp(1.75rem,  1.45rem + 1.8vw, 2.25rem);
+  --step-4:  clamp(2.125rem, 1.7rem + 2.6vw, 3rem);
+
+  --lh-tight: 1.15;
+  --lh-text:  1.6;
+  --lh-long:  1.7;
+
+  --measure: 70ch;
+}
+
+body {
+  font-size: var(--step-0);
+  line-height: var(--lh-text);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 { 
+  font-size: var(--step-4);
+  line-height: var(--lh-tight);
+  letter-spacing: 0.005em;
+}
+h2 { 
+  font-size: var(--step-3);
+  line-height: var(--lh-tight);
+  letter-spacing: 0.01em;
+}
+h3 { 
+  font-size: var(--step-2);
+  line-height: 1.25;
+}
+
+p, li { max-width: var(--measure); }
+
+.hero .subhead { 
+  font-size: var(--step-1);
+  line-height: var(--lh-long);
+  color: var(--muted);
+}
+
+/* Improve table legibility on small screens */
+.table-wrap { overflow-x: auto; }
+table { font-size: var(--step--1); line-height: 1.45; }
+
+/* Hyphenation to avoid ugly rags on narrow widths */
+@supports (hyphens:auto) {
+  p, li, blockquote { hyphens: auto; }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+
+
 
 /* ---------- Link styling ---------- */
 a {
@@ -131,7 +196,6 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
   width:100%;height:auto;display:block
 }
 
-h1{font-size:32px;margin:8px 0}
 .subhead{color:var(--muted);margin:0 0 12px 0}
 .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 
@@ -147,6 +211,86 @@ h1{font-size:32px;margin:8px 0}
   font-size: 1.125rem; 
   color: var(--muted); 
 }
+/* ──────────────────────────────────────────────── */
+/* STORY SECTION (light contrast background block)  */
+/* ──────────────────────────────────────────────── */
+.section--alt {
+  background: #0f172a08; /* subtle tinted background for light mode */
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  padding-top: 4rem;     /* breathing room above */
+  padding-bottom: 4rem;  /* breathing room below */
+}
+
+/* Maintain consistent spacing for narrow container text */
+.section--alt .container-narrow p,
+.section--alt .container-narrow ul {
+  margin-bottom: 1.25rem;
+}
+
+/* Blockquote styling refinement */
+.section--alt blockquote {
+  font-style: italic;
+  font-size: 1.1rem;
+  border-left: 3px solid rgba(15, 23, 42, 0.15);
+  padding-left: 1rem;
+  margin-top: 2rem;
+  color: rgba(15, 23, 42, 0.8);
+}
+
+/* ──────────────────────────────────────────────── */
+/* DARK MODE VARIANT                               */
+/* ──────────────────────────────────────────────── */
+@media (prefers-color-scheme: dark) {
+  .section--alt {
+    background: rgba(255, 255, 255, 0.03); /* soft light tint */
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .section--alt blockquote {
+    border-left-color: rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.9);
+  }
+}
+
+/* ──────────────────────────────────────────────── */
+/* STORY TYPOGRAPHY — responsive + readable         */
+/* ──────────────────────────────────────────────── */
+
+/* Keep the narrow measure comfortable on mobile too */
+.section--alt .container-narrow {
+  max-width: 68ch;               /* ideal reading width */
+}
+
+/* Headline scales with viewport */
+.section--alt h2 {
+  font-size: clamp(1.375rem, 1.1rem + 1.2vw, 2rem); /* ~22px → 32px */
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+  margin-bottom: 1rem;
+}
+
+/* Paragraphs: larger base on mobile, gentle scale up */
+.section--alt p {
+  font-size: clamp(1.05rem, 0.98rem + 0.4vw, 1.15rem); /* ~16.8px → 18.4px */
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+/* Lists: same type size as paragraphs, with better rhythm */
+.section--alt ul {
+  padding-left: 1.1rem;          /* keep bullets inside the narrow column */
+  margin: 0.25rem 0 1rem 0;
+}
+
+.section--alt li {
+  font-size: clamp(1.05rem, 0.98rem + 0.4vw, 1.15rem);
+  line-height: 1.6;
+  margin: 0.4rem 0;
+}
+
+
 
 /* Optional: small all-caps kicker above headings */
 .kicker {
@@ -175,14 +319,27 @@ h1{font-size:32px;margin:8px 0}
 
 
 /* ---------- Sections ---------- */
-.section{padding:36px 0;border-bottom:1px solid var(--border)}
+.section{
+  padding: clamp(2.5rem, 2rem + 2vw, 5rem) 0;
+  border-bottom: 1px solid var(--border);
+}
 .section h2{margin-top:0}
 .grid.two{display:grid;grid-template-columns:1fr 1fr;gap:24px}
 
 .table-wrap{overflow:auto}
 table{width:100%;border-collapse:collapse}
-th,td{border:1px solid var(--border);padding:10px;text-align:left;vertical-align:top}
-tfoot td{color:var(--muted)}
+th, td {
+  border: none;
+  border-bottom: 1px solid var(--border);
+  padding: 10px;
+  text-align: left;
+  vertical-align: top;
+}
+thead th {
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 65%, #fff 35%);
+}
+tfoot td { color: var(--muted); }
+
 
 /* ---------- Footer ---------- */
 .site-footer{
