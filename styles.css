@@ -204,6 +204,46 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
   line-height: 1.6; margin: 0.4rem 0;
 }
 
+/* Align and style "Why GraspingAI" section — centered title, left-aligned list, no bullets */
+#why.section--center {
+  text-align: center;
+}
+
+#why.section--center ul {
+  list-style: none;          /* remove bullets */
+  margin: 1.25rem auto;
+  padding-left: 0;           /* no indentation */
+  text-align: left;          /* clean left edge */
+  max-width: 68ch;
+  line-height: 1.7;
+}
+
+#why.section--center li {
+  margin-bottom: 1rem;
+  position: relative;
+  padding-left: 0;           /* ensures perfect text alignment */
+}
+
+/* Optional subtle visual marker (if you want slight structure) */
+#why.section--center li strong {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+
+#why.section--center li::before {
+  content: "";
+  position: absolute;
+  left: -0.75rem;
+  top: 0.6rem;
+  width: 4px;
+  height: 1rem;
+  background: var(--accent);
+  opacity: 0.15;
+  border-radius: 2px;
+}
+
+
+
 /* ---------- Tables ---------- */
 .table-wrap { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; font-size: var(--step--1); line-height: 1.45; }
@@ -236,6 +276,16 @@ thead th { border-bottom: 1px solid var(--border); } /* fallback */
   padding: 28px 0; color: var(--muted); text-align: center;
   border-top: 1px solid var(--border); background: var(--panel);
 }
+
+/* Turn off auto-hyphenation sitewide */
+p, li, blockquote {
+  hyphens: none;
+  -webkit-hyphens: none;
+  -ms-hyphens: none;
+  word-break: normal;         /* avoid aggressive breaking */
+  overflow-wrap: break-word;  /* still wrap long URLs nicely */
+}
+
 
 /* ---------- Responsive tweaks ---------- */
 @media (max-width: 900px){
