@@ -188,6 +188,12 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
   }
 }
 
+/* Ensure a visible divider after the Story section */
+#story {
+  border-bottom: 1px solid var(--border) !important;
+}
+
+
 /* Alt section typography */
 .section--alt .container-narrow { max-width: 68ch; }
 .section--alt h2 {
