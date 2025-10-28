@@ -22,6 +22,7 @@
   <!-- Stylesheet -->
   <link rel="stylesheet" href="styles.css" />
   <script defer src="https://analytics.graspingai.com/script.js" data-website-id="b039b3af-a504-41a4-a995-48799c08bfc6"></script>
+  <meta name="robots" content="noindex">
 </head>
 
 <body>
@@ -40,7 +41,7 @@
         <a href="#who">Who We Work With</a>
         <a href="#engagement">Engagement</a>
         <a href="#why">Why Us</a>
-        <a class="btn small" href="https://cal.com/graspingai">Connect</a>
+        <a class="btn small" id="nav-connect" href="https://cal.com/graspingai">Connect</a>
       </nav>
       <button class="menu-toggle" aria-label="Open Menu" aria-controls="drawer" aria-expanded="false">☰</button>
     </div>
@@ -49,7 +50,7 @@
       <a href="#who">Who We Work With</a>
       <a href="#engagement">Engagement</a>
       <a href="#why">Why Us</a>
-      <a class="btn small" href="https://cal.com/akagan/custom">Book a Call</a>
+      <a class="btn small" href="https://cal.com/akagan/graspingai">Book a Call</a>
     </div>
   </header>
 
@@ -182,7 +183,7 @@
     <section id="contact" class="section">
       <h2>Let’s Connect</h2>
       <p>Want to understand how to make your AI product more trustworthy, usable, and effective?</p>
-      <p><a class="btn primary" href="https://cal.com/akagan/custom">Book a call with Aaron →</a> <a class="btn secondary" href="https://www.linkedin.com/in/aaronkagan/">LinkedIn</a></p>
+      <a class="btn primary" id="book-call" href="https://cal.com/akagan/custom">Book a call with Aaron →</a> <a class="btn secondary" id="linkedin" href="https://www.linkedin.com/in/aaronkagan/">LinkedIn</a></p>
     </section>
   </main>
 
@@ -201,6 +202,18 @@
   });
 </script>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const track = (id, event) => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener("click", () => umami.track(event));
+    };
+
+    track("nav-connect", "nav_connect_click");
+    track("book-call", "book_call_click");
+    track("linkedin", "linkedin_click");
+  });
+</script>
 
 </body>
 </html>
