@@ -1,260 +1,223 @@
-# GraspingAI — Style Guide (v0.2)
+# GraspingAI — Style Guide (v0.3)
 
-This guide explains **which CSS knobs to turn** to change specific content on the page, and **which HTML classes or IDs** to use to get the result you want.
+This guide explains **how the site’s CSS system works**: how to change typography, spacing, and layout, and how to use the provided utility classes. It reflects all updates from your vertical rhythm and spacing system (v0.3).
 
 ---
 
-## 1. Typography
+## 1. Design Tokens Overview
 
-### Scale (fluid via CSS variables)
-Defined in `styles.css` under `:root`:
+### Colors
+All color variables are defined in `:root` in `styles.css`.
 
+| Token | Description |
+|--------|-------------|
+| `--bg` | Page background |
+| `--panel` | Section background or footer panel |
+| `--ink` | Main body text color |
+| `--muted` | De-emphasized grey text |
+| `--accent` | Accent color (buttons, highlights, links) |
+| `--border` | Light divider color |
+
+### Type Scale
+Fluid and mobile-first via `clamp()`:
 ```
---step--1 → Small (UI, tables, footnotes)
---step-0  → Base (default body: p, li)
---step-1  → Lead (emphasis body, subheads)
+--step--1 → Small (UI, captions)
+--step-0  → Base body
+--step-1  → Lead text
 --step-2  → h3
 --step-3  → h2
 --step-4  → h1
 ```
 
-**To change body or heading sizes:**  
-Edit the `--step-*` clamp values in `:root`. The whole site updates automatically.
-
-### HTML → CSS mapping
-
-| Purpose | HTML | CSS class / selector |
-|----------|------|----------------------|
-| Base body | `<p>`, `<li>` | uses `var(--step-0)` |
-| Emphasis / Lead | `<p class="text-lead">` | uses `var(--step-1)` |
-| Small text | `<p class="text-sm">` | uses `var(--step--1)` |
-| Headings | `<h1>` → `--step-4`, `<h2>` → `--step-3`, `<h3>` → `--step-2` |
-
-**To make a paragraph bigger or smaller:**  
-Add or swap `.text-lead`, `.text-base`, or `.text-sm`.
-
-**To center one line only:**  
-Add `.text-center` or use an inline `style="text-align:center"`.
-
-### Utilities (classes you can use anywhere)
-Add these once to `styles.css` (near your base typography rules) and use them throughout your HTML.
-
-```css
-/* ---------- Text utilities ---------- */
-.text-base { font-size: var(--step-0); }      /* explicit “normal” size */
-.text-lead { font-size: var(--step-1); }      /* emphasized body size */
-.text-sm   { font-size: var(--step--1); }     /* small/captions */
-
-.muted { color: var(--muted); }               /* color-only; no size change */
-
-/* Optional: muted links remain subtle (remove if you want accent links) */
-.muted a {
-  color: var(--muted);
-  border-bottom-color: rgba(148, 163, 184, 0.35);
-}
-.muted a:hover {
-  color: var(--muted);
-  border-bottom-color: rgba(148, 163, 184, 0.6);
-}
-
-/* Alignment helpers */
-.text-left   { text-align: left; }
-.text-center { text-align: center; }
-
-/* Use on emphasized lead text when you want full contrast (not muted) */
-.primary { color: var(--text); }
+### Spacing Scale
+Defined in `:root` under spacing tokens:
 ```
-
-**When to use which:**
-- Use `.muted` when you want **de-emphasis** (supporting copy) at **normal size**.
-- Use `.text-lead` when you want a **larger** paragraph for emphasis.
-- Combine `.text-lead.primary` for a **big, high-contrast** intro line.
-- Combine `.text-base.muted` for **normal-size, grey** supporting lines (e.g., “Founded by…”).
-
-## 2. Colors
-
-### Tokens (edit once → site-wide)
-Defined in `:root` in `styles.css`:
-
+--space-2xs: 0.25rem;  /* 4px */
+--space-xs:  0.5rem;   /* 8px */
+--space-sm:  0.75rem;  /* 12px */
+--space-md:  1.25rem;  /* 20px */
+--space-lg:  2rem;     /* 32px */
+--space-xl:  3rem;     /* 48px */
+--space-2xl: 4rem;     /* 64px */
+--section-padding: var(--space-2xl);
 ```
---bg, --panel, --ink (body text), --muted, --accent, --border
-```
-
-**To change the site’s accent color:**  
-Edit `--accent`. Buttons, links, outlines, and accents follow automatically.
-
-**To dim secondary copy:**  
-Add the `.muted` class (color only; size is inherited).
+These tokens control all vertical rhythm and spacing.
 
 ---
 
-## 3. Layout & Alignment
+## 2. Typography Utilities
 
-### Containers
-- `.container` → centered section, ~1100px max width.  
-- `.container-narrow` → centered, ~820px max width.
+| Class | Effect |
+|--------|--------|
+| `.text-base` | Normal body text (`var(--step-0)`) |
+| `.text-lead` | Larger lead paragraph (`var(--step-1)`) |
+| `.text-sm` | Small text (`var(--step--1)`) |
+| `.muted` | Greyed, de-emphasized text (uses `--muted`) |
+| `.primary` | Forces normal text color (counteracts muted) |
+| `.text-center` / `.text-left` | Alignment helpers |
 
-**Centered section, left-aligned body example:**
-
+**Example:**
 ```html
-<section class="section section--center">
-  <div class="container-narrow">
-    <h2>Centered Heading</h2>
-    <div class="text-left">
-      <p>Left-aligned body text…</p>
-    </div>
-  </div>
-</section>
+<p class="lead text-lead primary">GraspingAI is your strategic partner...</p>
+<p class="text-base muted">Founded by Aaron Kagan (ex-Google, Meta)...</p>
 ```
 
-### Grids
-- `.grid.two` → two columns, collapses at ≤900 px.  
-**To change breakpoint:** edit `@media (max-width: 900px)` in `styles.css`.
+> `.muted` changes only color — it does *not* increase size.
+
+---
+
+## 3. Vertical Rhythm & Spacing System
+
+### Element Defaults
+```css
+h1, h2, h3, p, ul, ol, blockquote { margin-top: 0; }
+
+h1 { margin-bottom: var(--space-sm); line-height: 1.1; }
+h2 { margin-bottom: var(--space-xs); line-height: 1.2; }
+h3 { margin-bottom: var(--space-xs); line-height: 1.3; }
+
+p, ul, ol, blockquote {
+  margin-bottom: var(--space-md);
+  line-height: var(--lh-text);
+}
+```
+
+### Section-Level Rhythm
+```css
+.section { padding: var(--section-padding) 0; }
+.section--alt { padding: calc(var(--section-padding) * 0.8) 0; }
+```
+
+### Hero Section
+```css
+.hero h1 { margin-bottom: var(--space-xs); }
+.hero .subhead { margin-top: 0; margin-bottom: var(--space-md); }
+.hero .cta { margin-top: var(--space-sm); gap: var(--space-sm); }
+```
+
+### Lists and Grids
+```css
+.grid.two { gap: var(--space-md); }
+.container-narrow ul { margin-bottom: var(--space-md); }
+#why.section--center ul { margin: var(--space-md) auto; }
+#why.section--center li { margin-bottom: var(--space-sm); }
+```
 
 ---
 
 ## 4. Buttons
 
-### Variants
+| Variant | Class | Description |
+|----------|--------|-------------|
+| Primary | `.btn.primary` | Filled accent background |
+| Secondary | `.btn.secondary` | Outline button (inset border) |
+| Small | `.small` | Compact version for nav or inline use |
 
-| Type | Class | Description |
-|------|--------|-------------|
-| Primary | `.btn.primary` | Filled accent background, light text |
-| Secondary | `.btn.secondary` | Outline (inset stroke) |
-| Small | `.small` | Reduces padding |
+**Example:**
+```html
+<a class="btn primary" href="#">Book a Call</a>
+<a class="btn secondary" href="#">Learn More</a>
+```
 
-**To add or edit hover effects:**
-- Primary → tweak color/brightness in `.btn.primary:hover`
-- Secondary → tweak `background` alpha in `.btn.secondary:hover`
+**Hover Effects:**
+- Primary: `color-mix()` brightening + slight lift
+- Secondary: semi-transparent accent background on hover
 
-**To make a nav/utility link look like the outline button:**
-Add `class="btn secondary small"` to the link, or use the existing `#nav-connect` / `#meeting-options` IDs.
-
-**Tracking (Umami):**  
-Styling never affects analytics. IDs remain intact and events still fire.
+IDs like `#nav-connect` or `#meeting-options` reuse the secondary style safely (Umami tracking unaffected).
 
 ---
 
-## 5. Story / Alt Section (Soft Contrast Band)
+## 5. Story / Alt Section
 
-### HTML pattern
+Used for content bands that contrast slightly from main background.
 
+**HTML Pattern:**
 ```html
-<section id="story" class="section section--alt">
+<section class="section section--alt">
   <div class="container-narrow">
     <h2>The Story</h2>
     <p>Intro paragraph...</p>
-    <blockquote>
-      “A short pull quote or testimonial.”
-    </blockquote>
+    <blockquote>“Key quote or testimonial.”</blockquote>
   </div>
 </section>
 ```
 
-### CSS knobs
-| Goal | Change this in `styles.css` |
-|------|------------------------------|
-| Adjust background tint | `.section--alt { background: … }` |
-| Strengthen contrast of quote text | `.section--alt blockquote { color: var(--text); }` |
-| Make quote larger | switch `font-size` → `var(--step-1)` |
-| Soften border | change `border-left` alpha (default = 0.3) |
+**Styling Highlights:**
+```css
+.section--alt blockquote {
+  color: var(--text);
+  border-left: 3px solid rgba(15,23,42,0.3);
+  font-style: italic;
+  font-size: var(--step-0);
+}
+```
 
-**Dark mode:** handled in the `@media (prefers-color-scheme: dark)` block automatically.
-
----
-
-## 6. Links & Hovers
-
-Global link styles live in the `a { … }` rule.  
-To make links more/less visible, adjust the hover `color` or `border-bottom` opacity.
+> Dark mode automatically adapts border and text color.
 
 ---
 
-## 7. Imagery (Minimalist)
+## 6. Layout Helpers
 
-- Use responsive SVG or high-res PNGs: `max-width:100%; height:auto;`
-- Keep imagery light, geometric, and mobile-safe.
-- Background gradients preferred over raster textures.
-
----
-
-## 8. HTML → CSS “Knob” Reference
-
-| You want to... | Do this in HTML | Change this in CSS |
-|-----------------|-----------------|--------------------|
-| Emphasize a paragraph | `<p class="text-lead">` | adjust `--step-1` |
-| Make small caption | `<p class="muted text-sm">` | adjust `--step--1` |
-| Center a line | `<p class="text-center">` | none |
-| Center section, left body | use pattern in §3 | none |
-| Add two columns | wrap in `<div class="grid two">` | adjust breakpoint |
-| Add filled CTA | `<a class="btn primary">` | tweak `.btn.primary:hover` |
-| Add outline CTA | `<a class="btn secondary">` | tweak `.btn.secondary:hover` |
-| Add nav CTA (tracked) | `<a id="nav-connect" class="btn small">` | edit `#nav-connect` rules |
-| Add blockquote | `<blockquote>…</blockquote>` inside `.section--alt` | edit `.section--alt blockquote` |
-| Change section width | `<div class="container[-narrow]">` | edit `.container` widths |
+| Class | Effect |
+|--------|--------|
+| `.section--center` | Centers section heading & container |
+| `.text-left` inside `.section--center` | Keeps body content left-aligned |
+| `.container-narrow` | Restrains max width (68ch) |
+| `.grid.two` | 2-column grid, collapses at 900px |
+| `.cta` | Evenly spaced call-to-action row |
 
 ---
 
-## 9. Accessibility & Motion
-
-- Respects `prefers-reduced-motion`.  
-- Buttons and links have visible focus styles (`:focus-visible`).  
-- Maintain text contrast (use `var(--text)` for readable color).
-
----
-
-## 10. Maintenance Rules
-
-- Never hard-code font sizes (`px`, `rem`); always use `var(--step-*)`.
-- Don’t reintroduce media-query font overrides for headings — the clamp scale handles it.
-- Prefer utility classes (`.text-lead`, `.text-sm`, `.muted`, `.text-center`) for one-off tweaks.
-- Keep sections centered with `.section--center` and `.container[-narrow]`.
+## 7. Responsive Breakpoints
+```css
+@media (max-width: 900px) { .grid.two { grid-template-columns: 1fr; } }
+@media (max-width: 720px) {
+  .menu { display: none; }
+  .menu-toggle { display: block; }
+  .brand-logo { height: 24px; }
+  .hero-logo-img { max-width: 260px; }
+  .hero { padding: 4rem 1rem; }
+}
+```
 
 ---
 
-## 11. Deprecated / Remove
-
-- Custom font clamps (`clamp(...)`) inside components.  
-- Hard-coded `font-size: 1.1rem` (use tokens).  
-- Malformed `.kicker` nesting (replace with clean rule using `--step--1`).  
-- Old responsive `h1` pixel override at 720 px.
+## 8. Maintenance Guidelines
+- Use `var(--step-*)` for all font sizes.
+- Use `var(--space-*)` for all margins, gaps, and paddings.
+- Never hard-code pixel values.
+- Prefer `.text-lead.primary` (highlight) and `.text-base.muted` (supporting) for hero text pairs.
+- Keep `.section` padding consistent using `--section-padding`.
 
 ---
 
-## 12. Example Patterns
-
-### “What We Do” (centered section + left body)
+## 9. Example — Hero Block
 ```html
-<section id="services" class="section section--center">
-  <div class="container-narrow">
-    <h2>What We Do</h2>
-    <p class="text-lead text-center">
-      We design clarity and trust into complex AI systems.
+<section class="hero">
+  <div class="container hero-inner">
+    <h1>Clear view in the age of AI.</h1>
+    <p class="subhead text-lead primary">
+      Focus on what matters most, move with confidence.
     </p>
-    <div class="text-left">
-      <div class="grid two">…</div>
+    <p class="text-base muted">
+      Founded by Aaron Kagan (ex-Google, Meta)...
+    </p>
+    <div class="cta">
+      <a class="btn primary" href="#">Meeting Options</a>
+      <a class="btn secondary" href="#">Explore Services ↓</a>
     </div>
   </div>
 </section>
 ```
 
-### Nav Outline CTA (tracked)
-```html
-<a id="nav-connect" class="btn small" href="https://cal.com/graspingai">Connect</a>
-```
-
-*(CSS gives it the outline style + hover; analytics unchanged.)*
-
 ---
 
-## 13. Changelog
+## 10. Changelog
 
-**2025-10-29**  
-- Unified button hover behavior (lift + color-mix)  
-- Fixed blockquote contrast (`color: var(--text)`)  
-- Simplified `.section--alt` rules  
-- Removed redundant font-size clamps  
-- Added unified typography scale and utilities
-
----
-
+**v0.3 (2025-10-29)**  
+- Introduced full spacing token system (`--space-*`)  
+- Applied consistent vertical rhythm for all sections  
+- Tightened hero spacing and standardized CTA gaps  
+- Added `.text-base`, `.muted`, `.primary` utilities  
+- Consolidated grid/list rhythm under tokens  
+- Updated docs to reflect final production CSS
