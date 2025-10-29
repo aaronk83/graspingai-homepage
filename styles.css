@@ -41,6 +41,7 @@
 .text-base { font-size: var(--step-0); }
 .text-lead { font-size: var(--step-1); line-height: var(--lh-long); }
 .text-sm   { font-size: var(--step--1); line-height: 1.45; }
+.text-center { text-align: center; }
 
 
 /* ---------- Global reset & base type ---------- */
@@ -107,11 +108,32 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 .section h2 { margin-top: 0; line-height: 1.25; margin-bottom: 8px; }
 .section--center { text-align: center; }
 .section--center h2, .section--center p, .section--center .cta { margin-left: auto; margin-right: auto; }
+
+/* Keep section centered, but body text left within a nice center column */
+.section--center .text-left { text-align: left; }
+.section--center .text-left > p,
+.section--center .text-left > ul,
+.section--center .text-left > ol,
+.section--center .text-left > .grid {
+  max-width: 68ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .section--center .lead { color: var(--muted); }
 .section--center a { color: var(--accent); font-weight: 500; border-bottom: 1px solid transparent; }
 .section--center a:hover { border-bottom-color: var(--accent); }
 .section:not(.section--center) h2 { text-align: left; }
 .grid.two { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+/* Center the section block, but keep text left by default */
+.section--center-layout { text-align: left; }
+.section--center-layout .container,
+.section--center-layout .container-narrow {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 
 /* ---------- Header / Nav ---------- */
 .site-header{
@@ -139,16 +161,123 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 
 /* ---------- Buttons ---------- */
 .btn {
-  display: inline-block; white-space: nowrap;
-  padding: 10px 14px; border-radius: 10px;
-  text-decoration: none; border: 1px solid var(--accent);
-  transition: .15s ease;
+  display: inline-flex;              /* was inline-block */
+  align-items: center;               /* vertically center text/icon */
+  justify-content: center;
+  box-sizing: border-box;            /* include border in size calc */
+  padding: 10px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  border: 1px solid var(--accent);
+  transition: 0.15s ease;
+  /* remove vertical-align and line-height hacks */
 }
+
 .btn.small { padding: 8px 12px; }
-.btn.primary { background: var(--accent); color: #08111e; border-color: var(--accent); font-weight: 700; }
-.btn.primary:hover { filter: brightness(1.05); }
-.btn.secondary { color: var(--accent); background: transparent; }
-.btn.secondary:hover { background: rgba(96,165,250,.12); }
+
+.btn.primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  background: var(--accent);
+  color: #08111e;
+  border: 0;
+  font-weight: 700;
+  transition: all 0.15s ease;
+}
+
+.btn.primary:hover,
+.btn.primary:focus-visible {
+  background: color-mix(in srgb, var(--accent) 85%, #ffffff 15%);
+  transform: translateY(-1px);
+  filter: brightness(1.03);
+}
+
+.btn.primary:active {
+  transform: translateY(0);
+  background: color-mix(in srgb, var(--accent) 90%, #000000 10%);
+}
+
+
+/* Outline button rendered with inset stroke to avoid clipping */
+.btn.secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 10px 14px;
+  border-radius: 10px;
+
+  /* remove the real border and use an inset stroke instead */
+  border: 0;
+  box-shadow: inset 0 0 0 1px var(--accent);
+
+  color: var(--accent);
+  background: transparent;
+  background-clip: padding-box; /* harmless with box-shadow but fine to keep */
+}
+
+.btn.secondary:hover {
+  background: rgba(96,165,250,.15);
+  box-shadow: inset 0 0 0 1px var(--accent);
+  color: #fff; /* adds light text contrast on hover */
+  transform: translateY(-1px);
+  transition: all 0.15s ease;
+}
+
+/* --- Nav & utility outline buttons (use same look as .btn.secondary) --- */
+#nav-connect,
+#meeting-options {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 8px 12px;            /* small sizing to match .btn.small */
+  border-radius: 10px;
+  border: 0;
+  box-shadow: inset 0 0 0 1px var(--accent);  /* inset stroke avoids clipping */
+  color: var(--accent);
+  background: transparent;
+  transition: all 0.15s ease;
+}
+
+/* Hover/focus: subtle fill + lift, accessible focus visibility */
+#nav-connect:hover,
+#meeting-options:hover,
+#nav-connect:focus-visible,
+#meeting-options:focus-visible {
+  background: rgba(96,165,250,.15);
+  box-shadow: inset 0 0 0 1px var(--accent);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* Press feedback */
+#nav-connect:active,
+#meeting-options:active {
+  transform: translateY(0);
+  background: rgba(96,165,250,.10);
+}
+
+/* Make sure the nav container doesn't override the hover color */
+.menu a#nav-connect:hover,
+.menu a#nav-connect:focus-visible {
+  color: #fff;
+}
+
+
+
+
+/* Ensure the button row centers them on baseline */
+.cta {
+  display: flex;
+  align-items: center;               /* keep buttons vertically centered */
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 
 /* ---------- Hero ---------- */
 .hero{
@@ -163,7 +292,14 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 .hero-logo { display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
 .hero-logo-img { max-width: 340px; width: 100%; height: auto; display: block; }
 .subhead { color: var(--muted); margin: 0 0 12px 0; }
-.cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.cta {
+  display: flex;
+  align-items: center;      /* ✅ vertically centers both buttons */
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
 
 /* ---------- Kicker (small all-caps label) ---------- */
 .kicker { .kicker { font-size: var(--step--1); } }
