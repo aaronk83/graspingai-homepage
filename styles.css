@@ -411,12 +411,54 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 /* --- blockquote fix --- */
 .section--alt blockquote {
   font-style: italic;
-  font-size: var(--step-0); /* or var(--step-1) if you want more emphasis */
+  font-size: var(--step-1); /* or var(--step-1) if you want more emphasis */
   border-left: 3px solid rgba(15, 23, 42, 0.3);
   padding-left: 1rem;
   margin-top: 2rem;
   color: var(--text); /* ✅ readable against the light background */
+  border-left: 3px solid var(--accent);
 }
+
+/* Brand quote base */
+.quote-brand {
+  position: relative;
+  margin-top: var(--space-lg);
+  padding-left: calc(var(--space-sm) + 0.25rem);
+  line-height: 1.5;
+  font-size: var(--step-0);
+}
+
+/* Subtle left bar */
+.quote-brand::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.15em;
+  bottom: 0.15em;
+  width: 4px;
+  border-radius: 2px;
+  background: var(--accent);
+  opacity: 0.35;
+}
+
+/* Opening quote */
+.quote-brand.signature::after {
+  content: "“";
+  position: absolute;
+  left: calc(-1 * var(--space-sm));
+  top: -0.35em;
+  font-size: 2.2rem;
+  line-height: 1;
+  color: var(--accent);
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+/* Color modifiers */
+.quote-brand.is-muted  { color: var(--muted); }
+.quote-brand.is-accent { color: var(--accent); }
+
+
 
 /* Dark-mode refinements */
 @media (prefers-color-scheme: dark) {
