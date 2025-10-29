@@ -37,6 +37,12 @@
   --measure:  70ch;
 }
 
+/* Typography utilities */
+.text-base { font-size: var(--step-0); }
+.text-lead { font-size: var(--step-1); line-height: var(--lh-long); }
+.text-sm   { font-size: var(--step--1); line-height: 1.45; }
+
+
 /* ---------- Global reset & base type ---------- */
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
@@ -50,6 +56,12 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
+
+/* Normalize paragraph and list text size */
+p, li {
+  font-size: var(--step-0);
+}
+
 
 /* Headings */
 h1 { font-size: var(--step-4); line-height: var(--lh-tight); letter-spacing: 0.005em; }
@@ -95,7 +107,7 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 .section h2 { margin-top: 0; line-height: 1.25; margin-bottom: 8px; }
 .section--center { text-align: center; }
 .section--center h2, .section--center p, .section--center .cta { margin-left: auto; margin-right: auto; }
-.section--center .lead { font-size: 1.125rem; color: var(--muted); }
+.section--center .lead { color: var(--muted); }
 .section--center a { color: var(--accent); font-weight: 500; border-bottom: 1px solid transparent; }
 .section--center a:hover { border-bottom-color: var(--accent); }
 .section:not(.section--center) h2 { text-align: left; }
@@ -154,10 +166,8 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 .cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
 /* ---------- Kicker (small all-caps label) ---------- */
-.kicker {
-  letter-spacing: .12em; text-transform: uppercase; font-weight: 700;
-  color: var(--muted); font-size: .8rem; margin: 0 0 6px 0;
-}
+.kicker { .kicker { font-size: var(--step--1); } }
+
 
 /* ---------- Story / alt section (soft contrast band) ---------- */
 .section--alt {
@@ -200,15 +210,9 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
   font-size: clamp(1.375rem, 1.1rem + 1.2vw, 2rem);
   line-height: 1.25; letter-spacing: 0.01em; margin-bottom: 1rem;
 }
-.section--alt p {
-  font-size: clamp(1.05rem, 0.98rem + 0.4vw, 1.15rem);
-  line-height: 1.6; margin-bottom: 1rem;
-}
+
 .section--alt ul { padding-left: 1.1rem; margin: 0.25rem 0 1rem 0; }
-.section--alt li {
-  font-size: clamp(1.05rem, 0.98rem + 0.4vw, 1.15rem);
-  line-height: 1.6; margin: 0.4rem 0;
-}
+
 
 /* Align and style "Why GraspingAI" section — centered title, left-aligned list, no bullets */
 #why.section--center {
@@ -292,16 +296,22 @@ p, li, blockquote {
   overflow-wrap: break-word;  /* still wrap long URLs nicely */
 }
 
-
 /* ---------- Responsive tweaks ---------- */
 @media (max-width: 900px){
   .grid.two { grid-template-columns: 1fr; }
 }
+
 @media (max-width: 720px){
   .menu { display: none; }
   .menu-toggle { display: block; }
   .brand-text { display: inline; }
   .brand-logo { height: 24px; }
   .hero-logo-img { max-width: 260px; }
-  h1 { font-size: 26px; } /* explicit fallback clamp for smallest screens */
+
+  /* Tighten hero spacing if needed */
+  .hero {
+    padding: 4rem 1rem;
+  }
+  /* Remove fixed h1 override — use clamp scale instead */
+  /* h1 font-size now follows var(--step-4) fluidly */
 }
