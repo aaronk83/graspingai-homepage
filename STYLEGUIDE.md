@@ -36,7 +36,40 @@ Add or swap `.text-lead`, `.text-base`, or `.text-sm`.
 **To center one line only:**  
 Add `.text-center` or use an inline `style="text-align:center"`.
 
----
+### Utilities (classes you can use anywhere)
+Add these once to `styles.css` (near your base typography rules) and use them throughout your HTML.
+
+```css
+/* ---------- Text utilities ---------- */
+.text-base { font-size: var(--step-0); }      /* explicit “normal” size */
+.text-lead { font-size: var(--step-1); }      /* emphasized body size */
+.text-sm   { font-size: var(--step--1); }     /* small/captions */
+
+.muted { color: var(--muted); }               /* color-only; no size change */
+
+/* Optional: muted links remain subtle (remove if you want accent links) */
+.muted a {
+  color: var(--muted);
+  border-bottom-color: rgba(148, 163, 184, 0.35);
+}
+.muted a:hover {
+  color: var(--muted);
+  border-bottom-color: rgba(148, 163, 184, 0.6);
+}
+
+/* Alignment helpers */
+.text-left   { text-align: left; }
+.text-center { text-align: center; }
+
+/* Use on emphasized lead text when you want full contrast (not muted) */
+.primary { color: var(--text); }
+```
+
+**When to use which:**
+- Use `.muted` when you want **de-emphasis** (supporting copy) at **normal size**.
+- Use `.text-lead` when you want a **larger** paragraph for emphasis.
+- Combine `.text-lead.primary` for a **big, high-contrast** intro line.
+- Combine `.text-base.muted` for **normal-size, grey** supporting lines (e.g., “Founded by…”).
 
 ## 2. Colors
 
