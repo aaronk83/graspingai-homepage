@@ -13,6 +13,31 @@
    ========================================================= */
 
 /* ---------- Tokens: color, type scale, rhythm ---------- */
+/* ========================= Typography System =========================
+Scale (fluid via CSS variables):
+  --step--1  → Small (UI, tables, footnotes)     class: .text-sm
+  --step-0   → Base (default body: p, li)        class: .text-base (optional)
+  --step-1   → Lead (emphasis body, subheads)    class: .text-lead
+Headings:
+  h1 → --step-4   h2 → --step-3   h3 → --step-2
+
+Usage:
+- Body copy defaults to --step-0.
+- Use .text-lead sparingly for intro/hero paragraphs.
+- Use .text-sm for captions/footnotes only.
+- Avoid hard-coded px/rem font-sizes; always route through tokens.
+
+Alignment helpers:
+- .section--center centers the section block (and can center text).
+- For “centered layout + left body”, wrap body in .text-left inside .section--center.
+- Optional: .text-center / .text-left for granular alignment.
+
+Maintenance:
+- No media query font overrides (clamp scale handles it).
+- If you tune a token, the whole site follows automatically.
+====================================================================== */
+
+
 :root{
   /* Color */
   --bg:#0b1220;
@@ -42,6 +67,7 @@
 .text-lead { font-size: var(--step-1); line-height: var(--lh-long); }
 .text-sm   { font-size: var(--step--1); line-height: 1.45; }
 .text-center { text-align: center; }
+
 
 
 /* ---------- Global reset & base type ---------- */
@@ -304,24 +330,45 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 /* ---------- Kicker (small all-caps label) ---------- */
 .kicker { .kicker { font-size: var(--step--1); } }
 
-
 /* ---------- Story / alt section (soft contrast band) ---------- */
 .section--alt {
   background: #0f172a08;
   border-top: 1px solid rgba(15, 23, 42, 0.06);
   border-bottom: 1px solid rgba(15, 23, 42, 0.06);
-  padding-top: 4rem; padding-bottom: 4rem;
-}
-.section--alt .container-narrow p,
-.section--alt .container-narrow ul { margin-bottom: 1.25rem; }
-.section--alt blockquote {
-  font-style: italic; font-size: 1.1rem;
-  border-left: 3px solid rgba(15, 23, 42, 0.15);
-  padding-left: 1rem; margin-top: 2rem;
-  color: rgba(15, 23, 42, 0.8);
+  padding: 4rem 0;
 }
 
-/* Dark-mode refinements for alt section */
+.section--alt .container-narrow {
+  max-width: 68ch;
+}
+
+.section--alt h2 {
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+  margin-bottom: 1rem;
+}
+
+.section--alt p,
+.section--alt ul {
+  margin-bottom: 1.25rem;
+}
+
+.section--alt ul {
+  padding-left: 1.1rem;
+  margin: 0.25rem 0 1rem 0;
+}
+
+/* --- blockquote fix --- */
+.section--alt blockquote {
+  font-style: italic;
+  font-size: var(--step-0); /* or var(--step-1) if you want more emphasis */
+  border-left: 3px solid rgba(15, 23, 42, 0.3);
+  padding-left: 1rem;
+  margin-top: 2rem;
+  color: var(--text); /* ✅ readable against the light background */
+}
+
+/* Dark-mode refinements */
 @media (prefers-color-scheme: dark) {
   .section--alt {
     background: rgba(255, 255, 255, 0.03);
@@ -329,37 +376,27 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
   .section--alt blockquote {
-    border-left-color: rgba(255, 255, 255, 0.25);
-    color: rgba(255, 255, 255, 0.9);
+    border-left-color: rgba(255, 255, 255, 0.35);
+    color: var(--text); /* uses your light-mode token automatically */
   }
 }
 
-/* Ensure a visible divider after the Story section */
+/* Divider after Story section */
 #story {
   border-bottom: 1px solid var(--border) !important;
 }
 
 
-/* Alt section typography */
-.section--alt .container-narrow { max-width: 68ch; }
-.section--alt h2 {
-  font-size: clamp(1.375rem, 1.1rem + 1.2vw, 2rem);
-  line-height: 1.25; letter-spacing: 0.01em; margin-bottom: 1rem;
-}
-
-.section--alt ul { padding-left: 1.1rem; margin: 0.25rem 0 1rem 0; }
-
-
-/* Align and style "Why GraspingAI" section — centered title, left-aligned list, no bullets */
+/* ---------- "Why GraspingAI" section ---------- */
 #why.section--center {
   text-align: center;
 }
 
 #why.section--center ul {
-  list-style: none;          /* remove bullets */
+  list-style: none;
   margin: 1.25rem auto;
-  padding-left: 0;           /* no indentation */
-  text-align: left;          /* clean left edge */
+  padding-left: 0;
+  text-align: left;
   max-width: 68ch;
   line-height: 1.7;
 }
@@ -367,10 +404,9 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 #why.section--center li {
   margin-bottom: 1rem;
   position: relative;
-  padding-left: 0;           /* ensures perfect text alignment */
+  padding-left: 0;
 }
 
-/* Optional subtle visual marker (if you want slight structure) */
 #why.section--center li strong {
   display: inline-block;
   margin-bottom: 0.25rem;
@@ -387,6 +423,7 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
   opacity: 0.15;
   border-radius: 2px;
 }
+
 
 
 
