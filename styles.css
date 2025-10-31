@@ -490,18 +490,18 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
   padding-left: 0;
   text-align: left;
   max-width: 68ch;
-  line-height: 1.7;
+  line-height: 1.55;
 }
 
 #why.section--center li {
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   position: relative;
   padding-left: 0;
 }
 
 #why.section--center li strong {
   display: inline-block;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.15rem;
 }
 
 #why.section--center li::before {
@@ -571,6 +571,53 @@ thead th { border-bottom: 1px solid var(--border); } /* fallback */
   border: 0;
   border-bottom: 1px solid var(--border);
 }
+
+.engagement-models {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+  font-size: var(--step--1);
+}
+
+.engagement-models th,
+.engagement-models td {
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.engagement-models th {
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+}
+
+.engagement-models td strong {
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* subtle styling for last column */
+.engagement-models td:last-child {
+  white-space: nowrap;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* mobile: stack rows */
+@media (max-width: 750px) {
+  .engagement-models th:nth-child(3),
+  .engagement-models th:nth-child(4),
+  .engagement-models td:nth-child(3),
+  .engagement-models td:nth-child(4) {
+    display: none; /* hides Result + Cost Range for very narrow screens */
+  }
+}
+
+
 
 /* ---------- Footer ---------- */
 .site-footer{
