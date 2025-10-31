@@ -408,7 +408,7 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
   margin: 0.25rem 0 1rem 0;
 }
 
-/* --- blockquote fix --- */
+/* --- blockquote --- */
 .section--alt blockquote {
   font-style: italic;
   font-size: var(--step-1); /* or var(--step-1) if you want more emphasis */
@@ -441,16 +441,16 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
   opacity: 0.35;
 }
 
-/* Opening quote */
+/* Opening quote -- the little " in the top left */
 .quote-brand.signature::after {
   content: "“";
   position: absolute;
-  left: calc(-1 * var(--space-sm));
-  top: -0.35em;
-  font-size: 2.2rem;
+  left: calc(-1 * var(--space-sm)); /* moves the mark right */
+  top: -0.35em;                     /* raises/lowers the mark */
+  font-size: 2.6rem;
   line-height: 1;
-  color: var(--accent);
-  opacity: 0.18;
+  color: color-mix(in srgb, var(--accent) 90%, #000 10%); /* color mix*/
+  opacity: 0.35; /* contrast */
   pointer-events: none;
 }
 
@@ -480,23 +480,21 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 
 
 /* ---------- "Why GraspingAI" section ---------- */
-#why.section--center {
-  text-align: center;
-}
+#why.section--center { text-align: center; }
 
 #why.section--center ul {
   list-style: none;
   margin: 1.25rem auto;
-  padding-left: 0;
+  padding-left: 0;      /* keep 0; we pad the li instead */
   text-align: left;
   max-width: 68ch;
-  line-height: 1.55;
+  line-height: 1.30; /* ← controls spacing b/w lines within each bullet */
 }
 
 #why.section--center li {
+  position: relative;    /* <-- anchor for ::before */
+  padding-left: 0.75rem; /* space for the vertical line */
   margin-bottom: 0.75rem;
-  position: relative;
-  padding-left: 0;
 }
 
 #why.section--center li strong {
@@ -507,14 +505,16 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 #why.section--center li::before {
   content: "";
   position: absolute;
-  left: -0.75rem;
-  top: 0.6rem;
-  width: 4px;
-  height: 1rem;
+  left: 0;
+  top: 0.3em;      /* ← raises or lowers the top of the line */
+  bottom: 0.3em;   /* ← extends or shortens the bottom of the line */
+  width: 4px;       /* ← thickness of the line */
   background: var(--accent);
   opacity: 0.15;
   border-radius: 2px;
 }
+
+
 
 /* Services split */
 .services-split h3 { margin-bottom: var(--space-sm); }
@@ -652,4 +652,37 @@ p, li, blockquote {
   }
   /* Remove fixed h1 override — use clamp scale instead */
   /* h1 font-size now follows var(--step-4) fluidly */
+}
+
+/* === High-contrast quotes for Story & Who sections === */
+
+/* 1) Base polish for quote-brand: small card feel (keeps your left bar + opening quote) */
+.quote-brand {
+  background: color-mix(in srgb, var(--panel) 82%, var(--accent) 18%);
+  color: var(--ink);
+  border-radius: 8px;
+  padding: 0.9rem 1rem 0.9rem calc(var(--space-sm) + 0.75rem); /* extra right padding */
+}
+
+/* Ensure the left bar spans the full quote height */
+.quote-brand::before {
+  top: 0.25em;
+  bottom: 0.25em;
+  opacity: 0.35; /* keep your subtle brand look */
+}
+
+/* 2) Story band: slightly stronger so it stands out against the lighter alt background */
+.section--alt .quote-brand {
+  background: color-mix(in srgb, var(--accent) 26%, var(--panel) 74%);
+  color: var(--ink);
+}
+
+/* 3) “Strong” variant you can opt into anywhere (max pop, reversed text) */
+.quote-brand.is-strong {
+  background: color-mix(in srgb, var(--accent) 70%, var(--bg) 30%);
+  color: var(--bg);
+}
+.quote-brand.is-strong::before {
+  background: color-mix(in srgb, var(--accent) 90%, #000 10%);
+  opacity: 0.6;
 }
