@@ -1,64 +1,94 @@
+  <!--
+    📸 When your social card is ready:
+    • Export it as a 1200×630 px JPG or PNG (JPG preferred for faster load)
+    • Name the file:  og-image.jpg
+    • Save it at:     /og/og-image.jpg  (so the full path is https://graspingai.com/og/og-image.jpg)
+    • Then add:
+
+        <meta property="og:image" content="https://graspingai.com/og/og-image.jpg" />
+        <meta name="twitter:image" content="https://graspingai.com/og/og-image.jpg" />
+  -->
+
 <!-- The main landing page for GraspingAI -->
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Basic metadata -->
+  <!-- Core -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>GraspingAI | Helping Businesses Design for the Age of AI</title>
-  <meta name="description" content="GraspingAI partners with product, research, and leadership teams to translate AI capabilities into human-centered strategy and design. Led by Aaron Kagan (PhD, ex-Google & Meta), I help organizations thrive in the age of AI." />
-  <meta name="robots" content="index,follow" />
 
-  <!-- Canonical -->
+  <!-- Title: mirrors your hero promise + buyer keywords -->
+  <title>GraspingAI — Clear View in the Age of AI | Human–AI Strategy & UX Research</title>
+
+  <!-- Meta description: ~155 chars, outcome-led + credibility -->
+  <meta name="description" content="GraspingAI helps product and research teams turn complex AI systems into experiences people understand and trust. Led by Aaron Kagan (ex-Google, Meta)." />
+
+  <!-- Indexing & canonical -->
+  <meta name="robots" content="index,follow,max-image-preview:large" />
   <link rel="canonical" href="https://graspingai.com/" />
 
-  <!-- Open Graph (social preview) -->
-  <meta property="og:title" content="GraspingAI — AI Product Strategy & UX Research Consulting" />
-  <meta property="og:description" content="I help companies translate artificial intelligence into human understanding — shaping AI products people can trust, understand, and use effectively." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://graspingai.com/" />
-  <!-- Optional when you have one -->
-  <!-- <meta property="og:image" content="https://graspingai.com/assets/social-card.png" /> -->
-
-  <!-- Theme color -->
+  <!-- Theme & icons (keep your existing assets) -->
   <meta name="theme-color" content="#0b1220" />
-
-  <!-- Favicons -->
   <link rel="icon" href="assets/favicon-light.svg" type="image/svg+xml" media="(prefers-color-scheme: light)">
   <link rel="icon" href="assets/favicon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="assets/favicon-light.png" type="image/png">
 
-  <!-- Styles & scripts -->
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="GraspingAI" />
+  <meta property="og:title" content="GraspingAI — Clear View in the Age of AI" />
+  <meta property="og:description" content="Turn complex AI systems into experiences people understand and trust." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://graspingai.com/" />
+  <!-- TODO: point this to a real image (1200×630). Place at /og/og-image.jpg if you like. -->
+  <meta property="og:image" content="https://graspingai.com/og/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="GraspingAI — Clear View in the Age of AI" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="GraspingAI — Clear View in the Age of AI" />
+  <meta name="twitter:description" content="Turn complex AI systems into experiences people understand and trust." />
+  <meta name="twitter:image" content="https://graspingai.com/og/og-image.jpg" />
+
+  <!-- CSS -->
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- Umami (kept) -->
   <script defer src="https://analytics.graspingai.com/script.js" data-website-id="b039b3af-a504-41a4-a995-48799c08bfc6"></script>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "GraspingAI",
-  "url": "https://graspingai.com/",
-  "logo": "https://graspingai.com/assets/logo-nav.png",
-  "founder": {
-    "@type": "Person",
-    "name": "Aaron Kagan"
-  },
-  "sameAs": [
-    "https://www.linkedin.com/in/aaronkagan/",
-    "https://github.com/aaronk83",
-    "https://cal.com/graspingai"
-  ],
-  "contactPoint": [{
-    "@type": "ContactPoint",
-    "contactType": "sales",
-    "url": "https://graspingai.com/#contact"
-  }]
-}
-</script>
-
-
+  <!-- Structured data (tightened and future-proofed) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "GraspingAI",
+        "url": "https://graspingai.com/",
+        "logo": "https://graspingai.com/assets/logo-nav.png",
+        "founder": { "@type": "Person", "name": "Aaron Kagan", "url": "https://www.linkedin.com/in/aaronkagan/" },
+        "sameAs": [
+          "https://www.linkedin.com/in/aaronkagan/",
+          "https://github.com/aaronk83"
+        ],
+        "contactPoint": [{
+          "@type": "ContactPoint",
+          "contactType": "sales",
+          "url": "https://graspingai.com/#contact"
+        }]
+      },
+      {
+        "@type": "WebSite",
+        "url": "https://graspingai.com/",
+        "name": "GraspingAI"
+      }
+    ]
+  }
+  </script>
 </head>
+
 
 
 <body>
@@ -117,12 +147,11 @@
 <section id="intro" class="section section--center">
   <div class="container-narrow">
     <p class="kicker muted">WHAT I DELIVER</p>
-    <h2>Clarity & Confidence in the AI Shift</h2>
     <p class="lead text-lead" style="color: var(--text);">
-      GraspingAI is your strategic partner in navigating the new wave of intelligent technology. I help you identify where AI can create the most impact by enhancing existing products, shaping new offers, or strengthening what already works.
+      I help teams focus on where AI creates the most impact—enhancing existing products, shaping new offerings, and strengthening what already works.
     </p>
     <p class="text-base muted">
-      Founded by <strong><a href="https://www.linkedin.com/in/aaronkagan/" target="_blank" rel="noopener noreferrer">Aaron Kagan</a></strong> (ex-Google, Meta), GraspingAI combines <strong>UX research</strong>, <strong>AI product strategy</strong>, and <strong>cognitive systems design</strong> to translate cutting-edge technology into clear, confident user experiences.
+      Founded by <strong><a href="https://www.linkedin.com/in/aaronkagan/" target="_blank" rel="noopener noreferrer">Aaron Kagan</a></strong> (ex-Google, Meta), GraspingAI combines UX research, AI product strategy, and cognitive systems design to help teams turn complex systems into experiences people can understand and trust.
     </p>
   </div>
 </section>
@@ -135,9 +164,9 @@
 
     <p>Every few years, a new technology changes the rules of business. The internet redefined access. Apps redefined interaction. The cloud redefined scale. <strong>Now AI is redefining how we think, create, and compete.</strong></p>
 
-    <p>For leaders, the question isn’t <em>whether</em> to use it, it’s <em>how</em> to use it well. What does that mean for <em>your</em> products, customers, and teams?</p>
+    <p>For leaders, the question isn’t <em>whether</em> to use it–it’s <em>how</em> to use it well. What does that mean for <em>your</em> products, customers, and teams?</p>
 
-    <p>At <strong>GraspingAI</strong>, I partner with organizations to navigate this platform shift with clarity and confidence, working at both ends of the challenge:</p>
+    <p>At <strong>GraspingAI</strong>, I partner with organizations to navigate this shift with clarity and confidence—<strong>from first questions to shipped products.</strong></p>
 
     <ul>
       <li><strong>Strategic leverage:</strong> What does AI make possible for your existing products or services? Should you build a new AI-driven offer, or hold course and adapt? What risks and responsibilities come with that choice?</li>
@@ -160,19 +189,19 @@
         <div>
           <h3>Core Services</h3>
           <ul>
-            <li><strong>AI UX Audits & Explainability Frameworks</strong>: Identify usability and trust gaps with actionable patterns for transparency and confidence.</li>
+            <li><strong>AI UX Audits & Explainability</strong>: Identify usability and trust gaps, with actionable patterns that improve legibility and confidence.</li>
             <li><strong>Workflow & Human-in-the-Loop Mapping</strong>: Ensure automation complements human judgment and expertise.</li>
-            <li><strong>AI Product & Strategy Advising</strong>: Align your roadmap with technical realities, user cognition, and responsible AI standards.</li>
+            <li><strong>AI Product & Strategy Advising</strong>: Align your roadmap with technical realities, user expectations, and responsible-AI standards.</li>
           </ul>
         </div>
         <div>
           <h3>Specialized Offerings</h3>
           <ul>
-            <li>Anthropomorphization Guidelines</li>
-            <li>Confidence & Uncertainty Design Patterns</li>
-            <li>Ethical / Responsible AI Design Reviews</li>
-            <li>Decision Transparency Blueprints</li>
-            <li>UX Ops for AI Teams</li>
+            <li><strong>Manage AI Anthropomorphism</strong>: Match user expectations to real model capabilities through UI, copy, states, and interaction patterns—so it feels human without over-promising, and behaves like <strong>a tool not an oracle.</strong></li>
+            <li><strong>Confidence & Uncertainty Design Patterns</strong>: Communicate model strengths, limits, and confidence clearly.</li>
+            <li><strong>AI Design Reviews</strong>: Practical guidance for human centered and future proofed policy product decisions.</li>
+            <li><strong>Decision Transparency Blueprints</strong>: Map inputs → outputs so users and stakeholders understand why.</li>
+            <li><strong>UX for AI Teams</strong>: Lightweight rituals and templates that scale research impact.</li>
           </ul>
         </div>
       </div>
@@ -186,12 +215,15 @@
   <div class="container-narrow">
     <h2>Who I Work With</h2>
     <div class="text-left">
+      <p class="quote-brand signature is-muted">
+      I’m most useful to teams that need to connect <strong>model behavior ↔ user experience ↔ product decisions</strong>.
+    </p>
       <ul>
         <li>Enterprise AI & SaaS organizations introducing intelligent automation at scale</li>
         <li>Startups turning research breakthroughs into human-centered products</li>
         <li>Cross-functional teams seeking alignment across Product, Engineering, Legal, and Policy</li>
       </ul>
-    </div>
+          </div>
   </div>
 </section>
 
@@ -202,18 +234,39 @@
     <h2>Engagement Models</h2>
     <div class="text-left">
       <div class="table-wrap">
-        <table>
-          <thead>
-            <tr><th>Tier</th><th>Description</th><th>Typical Range</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Quick Wins</td><td>UX Audits and Spot Tests</td><td>$3K–$5K</td></tr>
-            <tr><td>Strategic Foundations</td><td>Workflow Mapping + Trust Framework</td><td>$8K–$15K</td></tr>
-            <tr><td>Long-Term Strategy</td><td>AI Tech & Business Advising</td><td>$5K–$8K/mo or $15K–$25K/project</td></tr>
-            <tr><td>Specialized Add-Ons</td><td>e.g., Ethical AI Review, Design Sprint</td><td>$6K–$30K</td></tr>
-          </tbody>
-        </table>
-        <p class="muted text-sm text-center">*Custom pricing and package structures available upon request.</p>
+        <table class="engagement-models">
+  <thead>
+    <tr>
+      <th>Model</th>
+      <th>Focus</th>
+      <th>Result</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Quick Wins</strong></td>
+      <td>UX audits & spot tests</td>
+      <td>Clear fixes fast</td>
+    </tr>
+    <tr>
+      <td><strong>Strategic Foundations</strong></td>
+      <td>Workflow mapping + trust framework</td>
+      <td>Shared language for decisions</td>
+    </tr>
+    <tr>
+      <td><strong>Long-Term Strategy</strong></td>
+      <td>AI tech & business advising</td>
+      <td>North star + ongoing guidance</td>
+    </tr>
+    <tr>
+      <td><strong>Specialized Add-Ons</strong></td>
+      <td>Responsible AI review, design sprint, etc.</td>
+      <td>Targeted depth where needed</td>
+    </tr>
+  </tbody>
+</table>
+
+        <p class="muted text-sm text-center"><em>*Custom pricing and package structures available upon request.</em></p>
       </div>
     </div>
   </div>
@@ -223,18 +276,20 @@
 <section id="why" class="section section--center">
   <div class="container-narrow">
     <h2>Why GraspingAI</h2>
-    <ul>
-      <li><strong>Human/AI Interaction Expertise</strong> grounded in philosophy of mind, cognition, and product research, and proven through real-world interface and system design at scale.</li>
-      <li><strong>Proven Product Impact</strong> work that has shaped how global products think, see, and act, from intelligent workflows to trust and transparency frameworks.</li>
-      <li><strong>Actionable by Design</strong> strategies that turn emerging AI capabilities into interfaces, experiences, and operations people can understand, trust, and use with confidence.</li>
-    </ul>
+    <ul class="why">
+      <li><strong>Human–AI interaction expertise:</strong> research and systems thinking across model, design, and policy.</li>
+      <li><strong>Translation layer for teams:</strong> shared language and frameworks so design, engineering, and legal see the same system.</li>
+      <li><strong>Actionable, not academic:</strong> prototypes, patterns, and decisions you can ship.</li>
+      <li><strong>Credibility:</strong> proven impact across governance and product — shipped products policies for billions at Google Search, X (Moonshot Factory), and Meta.</li>
+</ul>
+
   </div>
 </section>
 
 <section id="contact" class="section section--center">
   <div class="container">
-    <h2>Let’s Connect</h2>
-    <p>Want to understand how to make your AI product more trustworthy, usable, and effective?</p>
+    <h2>Contact</h2>
+    <p>In a 25-minute call, we’ll map top opportunities and confirm the first step that creates value fastest.</p>
     <div class="cta">
       <a class="btn primary" id="book-call" href="https://cal.com/graspingai">Book a call with Aaron →</a>
       <a class="btn secondary" id="linkedin" href="https://www.linkedin.com/in/aaronkagan/">LinkedIn</a>
