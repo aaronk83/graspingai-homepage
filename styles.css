@@ -607,18 +607,6 @@ thead th { border-bottom: 1px solid var(--border); } /* fallback */
   font-weight: 500;
 }
 
-/* mobile: stack rows */
-@media (max-width: 750px) {
-  .engagement-models th:nth-child(3),
-  .engagement-models th:nth-child(4),
-  .engagement-models td:nth-child(3),
-  .engagement-models td:nth-child(4) {
-    display: none; /* hides Result + Cost Range for very narrow screens */
-  }
-}
-
-
-
 /* ---------- Footer ---------- */
 .site-footer{
   padding: 28px 0; color: var(--muted); text-align: center;
@@ -686,3 +674,24 @@ p, li, blockquote {
   background: color-mix(in srgb, var(--accent) 90%, #000 10%);
   opacity: 0.6;
 }
+
+/* Horizontal scroll for wide tables on small screens */
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* smooth iOS scroll */
+}
+
+.table-scroll table {
+  min-width: 720px; /* ensures all 4 columns fit; adjust if needed */
+  border-collapse: collapse;
+}
+
+/* Optional: subtle hint there is more off-screen */
+.table-scroll {
+  background:
+    linear-gradient(to right, var(--bg) 30%, transparent 30%) left/12px 100% no-repeat,
+    linear-gradient(to left, var(--bg) 30%, transparent 30%) right/12px 100% no-repeat;
+}
+.table-scroll::-webkit-scrollbar { height: 8px; }                /* optional, style scrollbar */
+.table-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
