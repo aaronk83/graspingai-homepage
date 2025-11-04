@@ -361,9 +361,29 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
   background:
     radial-gradient(1200px 400px at 50% -100px, rgba(96,165,250,.25), transparent 60%),
     var(--panel);
-  border-bottom: 1px solid var(--border);
+  /* REMOVE the border to avoid a hard line */
+  border-bottom: 0;
   text-align: center;
+
+  /* needed for the fade overlay */
+  position: relative;
 }
+
+/* Fade the hero image into the site background color (#0b1220) */
+.hero::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 200px;               /* adjust strength/length of fade */
+  background: linear-gradient(to bottom, rgba(11,18,32,0) 0%, #0b1220 100%);
+  pointer-events: none;
+}
+
+/* keep text/buttons above the overlay */
+.hero > * { position: relative; z-index: 1; }
+
 .hero-inner { max-width: 800px; margin: 0 auto; padding: 0 20px; }
 .hero-logo { display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
 .hero-logo-img { max-width: 340px; width: 100%; height: auto; display: block; }
@@ -375,6 +395,84 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
   gap: 12px;
   flex-wrap: wrap;
 }
+
+/* ---------- Section background utilities (simple + swappable) ---------- */
+
+/* 1) Drop-in background for any section */
+.section.with-bg {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* allow layering with your existing gradients */
+  background-blend-mode: overlay;
+}
+
+/* 2) Optional: soft overlay so text stays readable */
+.section.with-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.15));
+  pointer-events: none;
+}
+
+/* 3) Per-section variables (set once; change the file path to swap art) */
+#top { --section-bg: url("/assets/img/sections/home-hero.avif"); }
+#story { --section-bg: url("/assets/img/sections/story-band.avif"); }
+/* You can add more as needed:
+#services { --section-bg: url("/assets/img/sections/services-hero.avif"); }
+#who      { --section-bg: url("/assets/img/sections/who-hero.avif"); }
+#contact  { --section-bg: url("/assets/img/sections/contact-hero.avif"); }
+*/
+
+/* 4) Use the variable as the actual background-image */
+.section.with-bg { background-image: var(--section-bg); }
+
+/* 5) Handy utility for inline images in content */
+.img-fluid { max-width: 100%; height: auto; }
+
+
+
+
+/* ---------- Section backgrounds (conditional) ---------- */
+
+/* Background styles ONLY when a section declares data-bg */
+.section[data-bg] {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* use min-height ONLY for explicit background sections */
+  min-height: 60vh;
+}
+
+/* Soft overlay for readability (only when data-bg exists) */
+.section[data-bg]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.15));
+  pointer-events: none;
+}
+
+/* Map section IDs to image files (edit paths to swap art) */
+#top[data-bg="home-hero"]     { background-image: url("/assets/img/sections/home-hero.avif"); }
+#story[data-bg="story-band"]  { background-image: url("/assets/img/sections/story-band.avif"); }
+/* Optional future ones:
+#services[data-bg="services-hero"] { background-image: url("/assets/img/sections/services-hero.avif"); }
+#who[data-bg="who-hero"]           { background-image: url("/assets/img/sections/who-hero.avif"); }
+#contact[data-bg="contact-hero"]   { background-image: url("/assets/img/sections/contact-hero.avif"); }
+*/
+
+/* Utility: responsive inline images */
+.img-fluid { max-width: 100%; height: auto; }
+
+/* Optional utilities to control hero height explicitly */
+.vh-40 { min-height: 40vh; }
+.vh-60 { min-height: 60vh; }
+.vh-80 { min-height: 80vh; }
+
 
 
 /* ---------- Kicker (small all-caps label) ---------- */
