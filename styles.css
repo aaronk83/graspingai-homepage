@@ -343,8 +343,6 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 }
 
 
-
-
 /* Ensure the button row centers them on baseline */
 .cta {
   display: flex;
@@ -395,6 +393,10 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
   gap: 12px;
   flex-wrap: wrap;
 }
+
+
+
+
 
 /* ---------- Section background utilities (simple + swappable) ---------- */
 
@@ -458,7 +460,27 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 
 /* Map section IDs to image files (edit paths to swap art) */
 #top[data-bg="home-hero"]     { background-image: url("/assets/img/sections/home-hero.avif"); }
-#story[data-bg="story-band"]  { background-image: url("/assets/img/sections/story-band.avif"); }
+#story[data-bg="story-band"] {
+  background-image: url("/assets/img/content/shift.avif");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* fade into #0b1220 so there’s no hard line */
+#story::after{
+  content:"";
+  position:absolute;
+  left:0; right:0; bottom:0;
+  height:160px;
+  background: linear-gradient(to bottom, rgba(11,18,32,0) 0%, #0b1220 100%);
+  pointer-events:none;
+  z-index:1;
+}
+#story > *{ position:relative; z-index:2; }
+#story{ border-bottom:0 !important; }
+
+
 /* Optional future ones:
 #services[data-bg="services-hero"] { background-image: url("/assets/img/sections/services-hero.avif"); }
 #who[data-bg="who-hero"]           { background-image: url("/assets/img/sections/who-hero.avif"); }
@@ -571,10 +593,7 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
   }
 }
 
-/* Divider after Story section */
-#story {
-  border-bottom: 1px solid var(--border) !important;
-}
+
 
 
 /* ---------- "Why GraspingAI" section ---------- */
@@ -793,3 +812,54 @@ p, li, blockquote {
 }
 .table-scroll::-webkit-scrollbar { height: 8px; }                /* optional, style scrollbar */
 .table-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+
+/* === STORY — single source of truth === */
+
+/* Map Story to the actual image you have on disk */
+#story[data-bg="story-band"] {
+  background-image: url("/assets/img/content/shift.avif");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* Remove section--alt’s light band + borders for Story only */
+#story.section--alt {
+  background: transparent;         /* let the background-image show through */
+  border-top: 0;
+  border-bottom: 0;
+}
+
+/* Ensure the data-bg background style is active and readable */
+#story.section[data-bg] {
+  position: relative;              /* anchor for overlays */
+  min-height: 60vh;                /* keep some presence; you can adjust */
+}
+
+/* Soft readability overlay (very subtle) */
+#story.section[data-bg]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.28), rgba(0,0,0,.12));
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Bottom fade into site bg to avoid any hard seam with next section */
+#story::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 160px; /* adjust for longer/shorter fade */
+  background: linear-gradient(to bottom, rgba(11,18,32,0) 0%, #0b1220 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Keep Story content above overlays */
+#story > * {
+  position: relative;
+  z-index: 3;
+}
