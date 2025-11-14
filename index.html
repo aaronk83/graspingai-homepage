@@ -53,7 +53,7 @@
   <meta name="twitter:image" content="https://graspingai.com/og/og-image.jpg" />
 
   <!-- CSS -->
-  <link rel="stylesheet" href="styles.css?v=3" />
+  <link rel="stylesheet" href="styles.css?v=55" />
 
 
   <!-- Umami (kept) -->
@@ -133,7 +133,7 @@
     </div>
 
     <h1>Clear view in the age of AI.</h1>
-    <p class="subhead text-lead" style="margin-bottom: var(--space-lg);">
+    <p class="subhead text-lead">
       Turn uncertainty into clarity, and ideas into action.
     </p>
 
@@ -145,23 +145,22 @@
 </section>
 
 <!-- INTRO -->
-<section id="intro" class="section section--center">
+<section id="intro" class="section section--center" style="padding-top: clamp(1.5rem, 1rem + 2vw, 2.5rem);">
   <div class="container-narrow">
-    <p class="kicker muted">WHAT I DELIVER</p>
-    <p class="lead text-lead" style="color: var(--text);">
+    <p class="lead text-lead text-center" style="max-width: var(--measure); margin: 0 auto;">
       I help teams focus on where AI creates the most impact:<br><strong>enhancing existing products, shaping new offerings</strong>, <br>and strengthening what already works.
     </p>
-    <p class="text-base muted">
+    <p class="muted text-center" style="max-width: var(--measure); margin: 1.5rem auto 0 auto;">
       Founded by <strong><a href="https://www.linkedin.com/in/aaronkagan/" target="_blank" rel="noopener noreferrer">Aaron Kagan</a></strong> (ex-Google, Meta), GraspingAI combines UX research, AI product strategy, and cognitive systems design to help teams turn complex systems into experiences people can understand and trust.
     </p>
   </div>
 </section>
 
 
-        <!-- Story - The Shift We’re Navigating -->
-  <section id="story" class="section section--alt" data-bg="story-band">
+        <!-- Story - The Shift We're Navigating -->
+  <section id="story" class="section section--alt section--center" data-bg="story-band">
   <div class="container-narrow">
-    <h2 style="text-align:center;">The Shift We’re Navigating</h2>
+    <h2>The Shift We're Navigating</h2>
       <!-- Inline image for the Story section \ a picture block -->
       
     <p>Every decade brings a shift. Today, AI is redefining how we think, create, and compete. <strong>Now AI is redefining how we think, create, and compete.</strong></p>
@@ -170,7 +169,7 @@
     <p>GraspingAI helps teams find clarity: where AI adds real value, how it should show up for users, and what to build next.</p>
 
    
-    <p class="quote-brand signature is-signature">
+    <p class="quote-brand signature">
       <em>I help you turn the complexity of AI into momentum—creating products, systems, and strategies that grow your business and strengthen what makes it unique.</em>
     </p>
   </div>
@@ -193,28 +192,87 @@
 <section id="services" class="section section--center">
   <div class="container-narrow">
     <h2>What I Do</h2>
-    <div class="text-left">
-      <p class="lead text-lead text-center">Design clarity and trust into complex AI systems.</p>
-      <div class="grid two">
-        <div>
-          <h3>Core Services</h3>
-          <ul>
-            <li><strong>AI UX Audits & Explainability</strong>: Identify usability and trust gaps, with actionable patterns that improve legibility and confidence.</li>
-            <li><strong>Workflow & Human-in-the-Loop Mapping</strong>: Ensure automation complements human judgment and expertise.</li>
-            <li><strong>AI Product & Strategy Advising</strong>: Align your roadmap with technical realities, user expectations, and responsible-AI standards.</li>
-          </ul>
+    <p class="section-kicker">
+      Two ways to work together: ongoing core services and focused specialized engagements.
+    </p>
+    <div class="services-columns">
+      <!-- Left card: Core services -->
+      <article class="service-card">
+        <header class="service-header">
+          <span class="service-icon service-icon--core">
+            <!-- Flowbite layers-outline icon -->
+            <svg fill="none" stroke="currentColor" stroke-width="1.5"
+                 viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M3 7.5l9-4.5 9 4.5-9 4.5-9-4.5z" />
+              <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M3 12l9 4.5 9-4.5" />
+              <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M3 16.5l9 4.5 9-4.5" />
+            </svg>
+          </span>
+          <h3 class="service-heading">Core services</h3>
+        </header>
+        <p class="service-intro">
+          Ongoing partnerships that anchor your AI work in real user needs and clear decisions.
+        </p>
+        <div class="service-items">
+          <div class="service-item">
+            <h4>AI opportunity discovery &amp; framing</h4>
+            <p>Translate "we should use AI" into a focused, high-leverage problem space with a clear why-now.</p>
+          </div>
+          <div class="service-item">
+            <h4>Experience mapping &amp; motivation journeys</h4>
+            <p>Map how AI-powered flows actually feel in practice—the motivations, frictions, and key moments.</p>
+          </div>
+          <div class="service-item">
+            <h4>Concept testing &amp; evaluative research</h4>
+            <p>Pressure-test ideas with the right users before you commit engineering time and roadmap slots.</p>
+          </div>
+          <div class="service-item">
+            <h4>Decision-ready synthesis &amp; storytelling</h4>
+            <p>Turn research into concise narratives leaders can act on quickly and confidently.</p>
+          </div>
         </div>
-        <div>
-          <h3>Specialized Offerings</h3>
-          <ul>
-            <li><strong>Manage AI Anthropomorphism</strong>: Through concept and product design, make AI interactions feel naturally human—anchored in how people think, but grounded in what the system can do.</li>
-            <li><strong>Confidence & Uncertainty Design Patterns</strong>: Communicate model strengths, limits, and confidence clearly.</li>
-            <li><strong>AI Design Reviews</strong>: Practical guidance for human centered and future proofed policy product decisions.</li>
-            <li><strong>Decision Transparency Blueprints</strong>: Map inputs → outputs so users and stakeholders understand why.</li>
-            <li><strong>UX for AI Teams</strong>: Lightweight rituals and templates that scale research impact.</li>
-          </ul>
+      </article>
+      <!-- Right card: Specialized offerings -->
+      <article class="service-card">
+        <header class="service-header">
+          <span class="service-icon service-icon--special">
+            <!-- Flowbite share-outline icon -->
+            <svg fill="none" stroke="currentColor" stroke-width="1.5"
+                 viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="18" cy="5" r="3" />
+              <circle cx="6" cy="12" r="3" />
+              <circle cx="18" cy="19" r="3" />
+              <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M8.7 11l7.6-5.2M8.7 13l7.6 5.2" />
+            </svg>
+          </span>
+          <h3 class="service-heading">Specialized offerings</h3>
+        </header>
+        <p class="service-intro">
+          Deep-dive engagements to untangle complex systems, govern AI behavior, and align stakeholders.
+        </p>
+        <div class="service-items">
+          <div class="service-item">
+            <h4>Human–AI system mapping</h4>
+            <p>Make it explicit who does what—humans, models, tools, and teams—so the system is legible and governable.</p>
+          </div>
+          <div class="service-item">
+            <h4>AI product heuristics &amp; design reviews</h4>
+            <p>Evaluate flows for trust, control, error-handling, and intelligibility using emerging AI-specific patterns.</p>
+          </div>
+          <div class="service-item">
+            <h4>Governance &amp; failure-mode workshops</h4>
+            <p>Surface risks, escalation paths, and guardrails for how AI behaves in the real world.</p>
+          </div>
+          <div class="service-item">
+            <h4>Executive storytelling &amp; decision support</h4>
+            <p>Connect research, systems, and roadmap into narratives that move decisions forward.</p>
+          </div>
         </div>
-      </div>
+      </article>
     </div>
   </div>
 </section>

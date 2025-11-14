@@ -354,33 +354,46 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 
 
 /* ---------- Hero ---------- */
-.hero{
-  padding: 64px 0 36px;
-  background:
-    radial-gradient(1200px 400px at 50% -100px, rgba(96,165,250,.25), transparent 60%),
-    var(--panel);
-  /* REMOVE the border to avoid a hard line */
-  border-bottom: 0;
-  text-align: center;
-
-  /* needed for the fade overlay */
+.hero {
   position: relative;
+  padding: clamp(3rem, 2.2rem + 3vw, 6rem) 0;
+  text-align: center;
+  overflow: hidden;
+  border-bottom: 0 !important;
+  background: var(--panel); /* Fallback background */
 }
 
-/* Fade the hero image into the site background color (#0b1220) */
-.hero::after{
+.hero::before {
   content: "";
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 200px;               /* adjust strength/length of fade */
-  background: linear-gradient(to bottom, rgba(11,18,32,0) 0%, #0b1220 100%);
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(to bottom, rgba(11,18,32,.45), rgba(11,18,32,.45));
   pointer-events: none;
 }
 
-/* keep text/buttons above the overlay */
-.hero > * { position: relative; z-index: 1; }
+.hero[data-bg="home-hero"] {
+  background-image: url("assets/img/sections/home-hero.avif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero[data-bg="home-hero"]::before {
+  background: linear-gradient(to bottom, rgba(11,18,32,.45), rgba(11,18,32,.45));
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 100px;
+  background: linear-gradient(to bottom, rgba(11,18,32,0) 0%, var(--bg) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero > * { position: relative; z-index: 2; }
 
 .hero-inner { max-width: 800px; margin: 0 auto; padding: 0 20px; }
 .hero-logo { display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
@@ -439,46 +452,56 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 
 /* ---------- Section backgrounds (conditional) ---------- */
 
-/* Background styles ONLY when a section declares data-bg */
-.section[data-bg] {
+/* Background styles for sections with data-bg (exclude hero which has its own styling) */
+.section[data-bg]:not(.hero) {
   position: relative;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  /* use min-height ONLY for explicit background sections */
-  min-height: 60vh;
+  min-height: auto; /* Override in specific sections like #story */
 }
 
-/* Soft overlay for readability (only when data-bg exists) */
-.section[data-bg]::before {
+/* Hero section uses different background pattern - exclude from section[data-bg] rules */
+.hero[data-bg] {
+  min-height: auto;
+}
+
+/* Story section with background image */
+#story {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(2.5rem, 2rem + 2vw, 5rem) 0 clamp(2rem, 1.5rem + 2vw, 3rem) 0;
+  min-height: 40vh; /* Enough to show more of the background image */
+  border-bottom: 1px solid var(--border) !important;
+}
+
+#story::after {
   content: "";
   position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.15));
+  left: 0; right: 0; bottom: 0;
+  height: 60px; /* Reduced fade height to minimize spacing below story section */
+  background: linear-gradient(to bottom, rgba(11,18,32,0) 0%, var(--bg) 100%);
   pointer-events: none;
+  z-index: 2;
 }
 
-/* Map section IDs to image files (edit paths to swap art) */
-#top[data-bg="home-hero"]     { background-image: url("/assets/img/sections/home-hero.avif"); }
 #story[data-bg="story-band"] {
-  background-image: url("/assets/img/content/shift.avif");
-  background-position: center;
+  background-image: url("assets/img/sections/story-band.avif");
+  background-position: center center; /* Centered image for better balance */
   background-size: cover;
   background-repeat: no-repeat;
 }
 
-/* fade into #0b1220 so there’s no hard line */
-#story::after{
-  content:"";
-  position:absolute;
-  left:0; right:0; bottom:0;
-  height:160px;
-  background: linear-gradient(to bottom, rgba(11,18,32,0) 0%, #0b1220 100%);
-  pointer-events:none;
-  z-index:1;
+#story[data-bg="story-band"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(0,0,0,.28), rgba(0,0,0,.12));
+  pointer-events: none;
 }
-#story > *{ position:relative; z-index:2; }
-#story{ border-bottom:0 !important; }
+
+#story > * { position: relative; z-index: 3; }
 
 
 /* Optional future ones:
@@ -539,39 +562,31 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
   border-left: 3px solid var(--accent);
 }
 
-/* Brand quote base */
+/* Simplified quote styling - no background, no vertical line, no decorative quote */
 .quote-brand {
-  position: relative;
   margin-top: var(--space-lg);
-  padding-left: calc(var(--space-sm) + 0.25rem);
-  line-height: 1.5;
   font-size: var(--step-0);
+  line-height: 1.5;
+  font-style: italic;
+  color: var(--ink);
+  text-align: center;
+  /* Remove background, vertical line, and decorative quote for simpler style */
+  background: none;
+  padding: 0;
+  position: relative;
 }
 
-/* Subtle left bar */
 .quote-brand::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.15em;
-  bottom: 0.15em;
-  width: 4px;
-  border-radius: 2px;
-  background: var(--accent);
-  opacity: 0.35;
+  display: none; /* Remove vertical line */
 }
 
-/* Opening quote -- the little " in the top left */
+/* Remove decorative quote mark */
 .quote-brand.signature::after {
-  content: "“";
-  position: absolute;
-  left: calc(-1 * var(--space-sm)); /* moves the mark right */
-  top: -0.35em;                     /* raises/lowers the mark */
-  font-size: 2.6rem;
-  line-height: 1;
-  color: color-mix(in srgb, var(--accent) 90%, #000 10%); /* color mix*/
-  opacity: 0.35; /* contrast */
-  pointer-events: none;
+  display: none;
+}
+
+.section--alt .quote-brand {
+  background: none; /* No background even in alt sections */
 }
 
 /* Color modifiers */
@@ -636,29 +651,124 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 /* Services split */
 .services-split h3 { margin-bottom: var(--space-sm); }
 
-/* Cards for core services */
-.card-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
-.card {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 14px 16px;
+/* Section kicker */
+.section-kicker {
+  font-size: var(--step-0);
+  color: var(--muted);
+  text-align: center;
+  margin-bottom: var(--space-lg);
 }
-.card h4 { margin: 0 0 6px 0; font-size: var(--step-1); line-height: 1.25; }
-.card p  { margin: 0; color: var(--muted); }
 
-/* Pills for specialized offerings */
-.pill-list { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
-.pill-list li {
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 6px 10px;
-  background: transparent;
-  color: var(--ink);
-  font-size: var(--step--1);
-  line-height: 1.3;
+/* ---------- What I Do: two cards side-by-side ---------- */
+
+#services .services-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 1.75rem;
 }
-@media (max-width: 900px){ .card h4 { font-size: var(--step-0); } }
+
+#services .service-card {
+  flex: 1 1 0;
+  min-width: 260px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.5rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-align: left; /* Ensure card content is left-aligned, even inside .section--center */
+}
+
+/* header row: icon + title */
+#services .service-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+#services .service-heading {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+/* icon pill */
+#services .service-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+#services .service-icon svg {
+  width: 1.4rem;
+  height: 1.4rem;
+  stroke: currentColor;
+  fill: none;
+}
+
+/* icon backgrounds only - color inherits from text */
+#services .service-icon--core {
+  background: rgba(0, 221, 255, 0.18);
+  color: inherit;
+}
+
+#services .service-icon--special {
+  background: rgba(255, 200, 0, 0.22);
+  color: inherit;
+}
+
+/* Lead line under each card heading - reuse section-kicker style */
+#services .service-intro {
+  margin: 0 0 var(--space-md);   /* smaller than section-kicker's space-lg */
+  font-size: var(--step-0);      /* same as .section-kicker */
+  line-height: var(--lh-text);
+  color: var(--muted);           /* same muted color */
+  font-weight: 400;
+  text-align: left;
+}
+
+/* stacked items */
+#services .service-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+#services .service-item h4 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  opacity: 0.96;
+}
+
+#services .service-item p {
+  margin: 0.125rem 0 0;    /* closer to heading - reduced from 0.25rem */
+  font-size: 0.9rem;
+  opacity: 0.85;
+  line-height: 1.45;
+}
+
+/* Left-align headings, intros, and item text */
+#services .service-heading,
+#services .service-intro,
+#services .service-items,
+#services .service-item h4,
+#services .service-item p {
+  text-align: left;
+}
+
+/* mobile: stack cards */
+@media (max-width: 900px) {
+  #services .services-columns {
+    flex-direction: column;
+  }
+}
 
 
 
@@ -761,35 +871,31 @@ p, li, blockquote {
 
 /* === High-contrast quotes for Story & Who sections === */
 
-/* 1) Base polish for quote-brand: small card feel (keeps your left bar + opening quote) */
+/* 1) Base polish for quote-brand: no background */
 .quote-brand {
-  background: color-mix(in srgb, var(--panel) 82%, var(--accent) 18%);
+  background: none;
   color: var(--ink);
-  border-radius: 8px;
-  padding: 0.9rem 1rem 0.9rem calc(var(--space-sm) + 0.75rem); /* extra right padding */
+  padding: 0;
 }
 
 /* Ensure the left bar spans the full quote height */
 .quote-brand::before {
-  top: 0.25em;
-  bottom: 0.25em;
-  opacity: 0.35; /* keep your subtle brand look */
+  display: none; /* Remove vertical line */
 }
 
-/* 2) Story band: slightly stronger so it stands out against the lighter alt background */
+/* 2) Story band: no background */
 .section--alt .quote-brand {
-  background: color-mix(in srgb, var(--accent) 26%, var(--panel) 74%);
+  background: none;
   color: var(--ink);
 }
 
-/* 3) “Strong” variant you can opt into anywhere (max pop, reversed text) */
+/* 3) "Strong" variant - no background */
 .quote-brand.is-strong {
-  background: color-mix(in srgb, var(--accent) 70%, var(--bg) 30%);
-  color: var(--bg);
+  background: none;
+  color: var(--ink);
 }
 .quote-brand.is-strong::before {
-  background: color-mix(in srgb, var(--accent) 90%, #000 10%);
-  opacity: 0.6;
+  display: none;
 }
 
 /* Horizontal scroll for wide tables on small screens */
@@ -814,52 +920,4 @@ p, li, blockquote {
 .table-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 
 
-/* === STORY — single source of truth === */
-
-/* Map Story to the actual image you have on disk */
-#story[data-bg="story-band"] {
-  background-image: url("/assets/img/content/shift.avif");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-/* Remove section--alt’s light band + borders for Story only */
-#story.section--alt {
-  background: transparent;         /* let the background-image show through */
-  border-top: 0;
-  border-bottom: 0;
-}
-
-/* Ensure the data-bg background style is active and readable */
-#story.section[data-bg] {
-  position: relative;              /* anchor for overlays */
-  min-height: 60vh;                /* keep some presence; you can adjust */
-}
-
-/* Soft readability overlay (very subtle) */
-#story.section[data-bg]::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,.28), rgba(0,0,0,.12));
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Bottom fade into site bg to avoid any hard seam with next section */
-#story::after {
-  content: "";
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  height: 160px; /* adjust for longer/shorter fade */
-  background: linear-gradient(to bottom, rgba(11,18,32,0) 0%, #0b1220 100%);
-  pointer-events: none;
-  z-index: 2;
-}
-
-/* Keep Story content above overlays */
-#story > * {
-  position: relative;
-  z-index: 3;
-}
+/* Duplicate story section rules removed - using the correct ones defined above */
