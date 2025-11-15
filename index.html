@@ -53,7 +53,7 @@
   <meta name="twitter:image" content="https://graspingai.com/og/og-image.jpg" />
 
   <!-- CSS -->
-  <link rel="stylesheet" href="styles.css?v=55" />
+  <link rel="stylesheet" href="styles.css?v=66" />
 
 
   <!-- Umami (kept) -->
@@ -196,9 +196,9 @@
       Two ways to work together: ongoing core services and focused specialized engagements.
     </p>
     <div class="services-columns">
-      <!-- Left card: Core services -->
-      <article class="service-card">
-        <header class="service-header">
+      <!-- Core services accordion -->
+      <details class="service-card" data-accordion="core">
+        <summary class="service-header">
           <span class="service-icon service-icon--core">
             <!-- Flowbite layers-outline icon -->
             <svg fill="none" stroke="currentColor" stroke-width="1.5"
@@ -212,32 +212,40 @@
             </svg>
           </span>
           <h3 class="service-heading">Core services</h3>
-        </header>
-        <p class="service-intro">
-          Ongoing partnerships that anchor your AI work in real user needs and clear decisions.
-        </p>
-        <div class="service-items">
-          <div class="service-item">
-            <h4>AI opportunity discovery &amp; framing</h4>
-            <p>Translate "we should use AI" into a focused, high-leverage problem space with a clear why-now.</p>
-          </div>
-          <div class="service-item">
-            <h4>Experience mapping &amp; motivation journeys</h4>
-            <p>Map how AI-powered flows actually feel in practice—the motivations, frictions, and key moments.</p>
-          </div>
-          <div class="service-item">
-            <h4>Concept testing &amp; evaluative research</h4>
-            <p>Pressure-test ideas with the right users before you commit engineering time and roadmap slots.</p>
-          </div>
-          <div class="service-item">
-            <h4>Decision-ready synthesis &amp; storytelling</h4>
-            <p>Turn research into concise narratives leaders can act on quickly and confidently.</p>
+        </summary>
+
+        <div class="service-body">
+          <p class="service-intro">
+            Ongoing partnerships that anchor your AI work in real user needs and clear decisions.
+          </p>
+
+          <div class="service-items">
+            <div class="service-item">
+              <h4>AI opportunity discovery &amp; framing:</h4>
+              <p>Translate "we should use AI" into a focused, high-leverage problem space with a clear why-now.</p>
+            </div>
+
+            <div class="service-item">
+              <h4>Experience mapping &amp; motivation journeys:</h4>
+              <p>Map how AI-powered flows actually feel in practice—the motivations, frictions, and key moments.</p>
+            </div>
+
+            <div class="service-item">
+              <h4>Concept testing &amp; evaluative research:</h4>
+              <p>Pressure-test ideas with the right users before you commit engineering time and roadmap slots.</p>
+            </div>
+
+            <div class="service-item">
+              <h4>Decision-ready synthesis &amp; storytelling:</h4>
+              <p>Turn research into concise narratives leaders can act on quickly and confidently.</p>
+            </div>
           </div>
         </div>
-      </article>
-      <!-- Right card: Specialized offerings -->
-      <article class="service-card">
-        <header class="service-header">
+      </details>
+
+      <!-- Specialized offerings accordion -->
+      <details class="service-card" data-accordion="special">
+        <summary class="service-header">
           <span class="service-icon service-icon--special">
             <!-- Flowbite share-outline icon -->
             <svg fill="none" stroke="currentColor" stroke-width="1.5"
@@ -250,29 +258,36 @@
             </svg>
           </span>
           <h3 class="service-heading">Specialized offerings</h3>
-        </header>
-        <p class="service-intro">
-          Deep-dive engagements to untangle complex systems, govern AI behavior, and align stakeholders.
-        </p>
-        <div class="service-items">
-          <div class="service-item">
-            <h4>Human–AI system mapping</h4>
-            <p>Make it explicit who does what—humans, models, tools, and teams—so the system is legible and governable.</p>
-          </div>
-          <div class="service-item">
-            <h4>AI product heuristics &amp; design reviews</h4>
-            <p>Evaluate flows for trust, control, error-handling, and intelligibility using emerging AI-specific patterns.</p>
-          </div>
-          <div class="service-item">
-            <h4>Governance &amp; failure-mode workshops</h4>
-            <p>Surface risks, escalation paths, and guardrails for how AI behaves in the real world.</p>
-          </div>
-          <div class="service-item">
-            <h4>Executive storytelling &amp; decision support</h4>
-            <p>Connect research, systems, and roadmap into narratives that move decisions forward.</p>
+        </summary>
+
+        <div class="service-body">
+          <p class="service-intro">
+            Deep-dive engagements to untangle complex systems, govern AI behavior, and align stakeholders.
+          </p>
+
+          <div class="service-items">
+            <div class="service-item">
+              <h4>Human–AI system mapping:</h4>
+              <p>Make it explicit who does what—humans, models, tools, and teams—so the system is legible and governable.</p>
+            </div>
+
+            <div class="service-item">
+              <h4>AI product heuristics &amp; design reviews:</h4>
+              <p>Evaluate flows for trust, control, error-handling, and intelligibility using emerging AI-specific patterns.</p>
+            </div>
+
+            <div class="service-item">
+              <h4>Governance &amp; failure-mode workshops:</h4>
+              <p>Surface risks, escalation paths, and guardrails for how AI behaves in the real world.</p>
+            </div>
+
+            <div class="service-item">
+              <h4>Executive storytelling &amp; decision support:</h4>
+              <p>Connect research, systems, and roadmap into narratives that move decisions forward.</p>
+            </div>
           </div>
         </div>
-      </article>
+      </details>
     </div>
   </div>
 </section>
@@ -330,19 +345,19 @@
 </section>
 
 <section id="who" class="section section--center">
-  <div class="container-narrow">
+  <div class="container">
     <h2>Who I Work With</h2>
     <p class="lead text-lead text-center">Trusted by teams across AI, SaaS, and product innovation — from startups to Fortune-scale organizations.</p>
     <div class="text-left">
       <p class="quote-brand signature is-signature">
-      <em>I’m most useful to teams that need to connect <strong>model behavior ↔ user experience ↔ product decisions</strong>.</em>
+      <em>I'm most useful to teams that need to connect <strong>model behavior ↔ user experience ↔ product decisions</strong>.</em>
     </p>
-      <ul>
-        <li>Enterprise AI & SaaS organizations introducing intelligent automation at scale</li>
-        <li>Startups turning research breakthroughs into human-centered products</li>
-        <li>Cross-functional teams seeking alignment across Product, Engineering, Legal, and Policy</li>
-      </ul>
-          </div>
+    </div>
+    <ul>
+      <li>Enterprise AI & SaaS organizations introducing intelligent automation at scale</li>
+      <li>Startups turning research breakthroughs into human-centered products</li>
+      <li>Cross-functional teams seeking alignment across Product, Engineering, Legal, and Policy</li>
+    </ul>
   </div>
 </section>
 
@@ -375,6 +390,35 @@
   toggle.addEventListener('click', () => {
     drawer.classList.toggle('open');
     toggle.setAttribute('aria-expanded', drawer.classList.contains('open'));
+  });
+</script>
+
+<script>
+  // Handle service accordions: open on desktop, closed on mobile
+  document.addEventListener("DOMContentLoaded", function() {
+    const accordions = document.querySelectorAll('#services details[data-accordion]');
+    const breakpoint = 900; // matches CSS media query
+
+    function updateAccordionState() {
+      const isDesktop = window.innerWidth >= breakpoint;
+      accordions.forEach(acc => {
+        if (isDesktop) {
+          acc.open = true;  // open on desktop
+        } else {
+          acc.open = false; // closed on mobile
+        }
+      });
+    }
+
+    // Set initial state
+    updateAccordionState();
+
+    // Update on resize
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(updateAccordionState, 100);
+    });
   });
 </script>
 

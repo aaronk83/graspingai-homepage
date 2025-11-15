@@ -33,3 +33,19 @@ if (form) {
     }
   });
 }
+
+// Services accordions: desktop open by default, mobile collapsed
+document.addEventListener('DOMContentLoaded', function () {
+  const accordions = document.querySelectorAll('#services details.service-card');
+  if (!accordions.length) return;
+
+  const isMobile = window.matchMedia('(max-width: 900px)').matches;
+
+  accordions.forEach((details) => {
+    if (isMobile) {
+      details.removeAttribute('open'); // collapsed by default on mobile
+    } else {
+      details.setAttribute('open', 'open'); // expanded by default on desktop
+    }
+  });
+});

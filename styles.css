@@ -614,33 +614,38 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 /* ---------- "Why GraspingAI" section ---------- */
 #why.section--center { text-align: center; }
 
-#why.section--center ul {
+/* Shared list styling for "Why GraspingAI" and "Who I Work With" */
+#why.section--center ul,
+#who.section--center ul {
   list-style: none;
   margin: 1.25rem auto;
-  padding-left: 0;      /* keep 0; we pad the li instead */
+  padding-left: 0;
   text-align: left;
   max-width: 68ch;
-  line-height: 1.30; /* ← controls spacing b/w lines within each bullet */
+  line-height: 1.30;
 }
 
-#why.section--center li {
-  position: relative;    /* <-- anchor for ::before */
-  padding-left: 0.75rem; /* space for the vertical line */
+#why.section--center li,
+#who.section--center li {
+  position: relative;
+  padding-left: 0.75rem;  /* space for the vertical accent line */
   margin-bottom: 0.75rem;
 }
 
-#why.section--center li strong {
+#why.section--center li strong,
+#who.section--center li strong {
   display: inline-block;
   margin-bottom: 0.15rem;
 }
 
-#why.section--center li::before {
+#why.section--center li::before,
+#who.section--center li::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 0.3em;      /* ← raises or lowers the top of the line */
-  bottom: 0.3em;   /* ← extends or shortens the bottom of the line */
-  width: 4px;       /* ← thickness of the line */
+  top: 0.3em;
+  bottom: 0.3em;
+  width: 4px;
   background: var(--accent);
   opacity: 0.15;
   border-radius: 2px;
@@ -681,11 +686,28 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
   text-align: left; /* Ensure card content is left-aligned, even inside .section--center */
 }
 
+/* Accordion tweaks for service cards */
+/* #services details.service-card already has all the card styling via .service-card */
+
+/* Remove default disclosure triangle */
+#services .service-card > summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+#services .service-card > summary::-webkit-details-marker {
+  display: none;
+}
+
 /* header row: icon + title */
 #services .service-header {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  margin-bottom: 0;
+}
+
+#services details.service-card[open] .service-header {
   margin-bottom: 0.75rem;
 }
 
@@ -723,35 +745,41 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
   color: inherit;
 }
 
-/* Lead line under each card heading - reuse section-kicker style */
+/* Subheading inside service cards — quiet, small, muted */
+/* Body spacing inside accordion */
+#services .service-body {
+  margin-top: 1rem;
+}
+
 #services .service-intro {
-  margin: 0 0 var(--space-md);   /* smaller than section-kicker's space-lg */
-  font-size: var(--step-0);      /* same as .section-kicker */
-  line-height: var(--lh-text);
-  color: var(--muted);           /* same muted color */
+  margin: 0 0 1.25rem;
+  font-size: var(--step--1);
+  line-height: 1.55;   /* slightly more relaxed */
+  color: var(--muted);
   font-weight: 400;
   text-align: left;
+  max-width: 60ch;
 }
 
 /* stacked items */
 #services .service-items {
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: 1rem;
 }
 
 #services .service-item h4 {
-  margin: 0;
+  margin: 0 0 0.2rem;   /* tiny breathing room */
   font-size: 0.95rem;
   font-weight: 600;
   opacity: 0.96;
 }
 
 #services .service-item p {
-  margin: 0.125rem 0 0;    /* closer to heading - reduced from 0.25rem */
+  margin: 0;          /* remove accidental extra top margin */
   font-size: 0.9rem;
+  line-height: 1.5;
   opacity: 0.85;
-  line-height: 1.45;
 }
 
 /* Left-align headings, intros, and item text */
